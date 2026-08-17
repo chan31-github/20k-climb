@@ -1,7 +1,11 @@
 /* Offline shell. Cache-first: once installed the app makes no network
    requests at all, which is the point — it gets opened on Lantau. */
 
-const VERSION = 'lantau-v1';
+// Bump this whenever app code changes — a cache-first worker keeps serving
+// the installed copy until the version (and therefore this file) changes.
+// data/plan.json is the exception: it revalidates on its own, so plan edits
+// need no bump.
+const VERSION = 'lantau-v2';
 const SHELL = [
   './',
   'index.html',
@@ -31,8 +35,11 @@ const SHELL = [
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(VERSION);
+    // cache: 'reload' so an install always fetches from the network rather than
+    // the browser's HTTP cache, which would otherwise freeze in a stale copy.
     // Individually, so one missing optional asset cannot fail the whole install.
-    await Promise.all(SHELL.map(url => cache.add(url).catch(err => console.warn('skip', url, err))));
+    await Promise.all(SHELL.map(url =>
+      cache.add(new Request(url, { cache: 'reload' })).catch(err => console.warn('skip', url, err))));
     self.skipWaiting();
   })());
 });

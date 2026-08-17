@@ -51,6 +51,11 @@ validator, fix the stray comma, push again.
 *next* launch after your device has fetched it. To force it immediately: Settings →
 **Update from GitHub**.
 
+If you ever change the **app code** rather than the plan, bump `VERSION` in `sw.js`
+(`lantau-v2` → `lantau-v3`). A cache-first service worker keeps serving the copy it
+installed until that string changes. `data/plan.json` is deliberately exempt — it
+revalidates on its own, so plan edits never need a bump.
+
 ---
 
 ## Your log
