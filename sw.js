@@ -5,7 +5,7 @@
 // the installed copy until the version (and therefore this file) changes.
 // data/plan.json is the exception: it revalidates on its own, so plan edits
 // need no bump.
-const VERSION = 'lantau-v2';
+const VERSION = 'lantau-v3';
 const SHELL = [
   './',
   'index.html',

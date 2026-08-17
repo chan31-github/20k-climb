@@ -105,7 +105,10 @@ async function start() {
   // Registered directly rather than on window 'load' — plan.json is awaited
   // above, so that event has usually fired by the time we get here.
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW registration failed', err));
+    // updateViaCache: 'none' — sw.js itself must never come from the HTTP
+    // cache, or a new version can go unnoticed for as long as it stays fresh.
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
+      .catch(err => console.warn('SW registration failed', err));
   }
 
   // Flush any pending sync before the app goes away.
