@@ -4,7 +4,7 @@ import { esc, on, qs, qsa } from '../dom.js';
 import { md } from '../md.js';
 import { store } from '../store.js';
 import {
-  plan, getWeek, getPhase, getRace, daysOf, weekStats,
+  plan, getWeek, getPhase, daysOf, weekStats,
   currentWeekNumber, firstWeek, lastWeek, TYPE_ICON, TYPE_LABEL
 } from '../model.js';
 import { todayISO, formatShort, formatRange, daysBetween, DAYS, DAY_LONG, hhmm } from '../dates.js';

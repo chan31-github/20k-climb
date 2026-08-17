@@ -5,7 +5,7 @@ import { store } from '../store.js';
 import {
   plan, getWeek, daysOf, weekStats, currentWeekNumber, TYPE_ICON
 } from '../model.js';
-import { formatRange, formatFull, todayISO, hhmm } from '../dates.js';
+import { formatRange, formatFull, todayISO } from '../dates.js';
 
 const expanded = new Set();
 let root = null;

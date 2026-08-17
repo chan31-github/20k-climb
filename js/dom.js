@@ -17,11 +17,6 @@ export function on(root, type, sel, handler) {
   });
 }
 
-export function debounce(fn, ms) {
-  let t;
-  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
-}
-
 let toastTimer;
 export function toast(message) {
   const el = qs('#toast');

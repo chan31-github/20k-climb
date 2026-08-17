@@ -3,7 +3,7 @@
 import { qs, qsa, toast } from './dom.js';
 import { store } from './store.js';
 import { applyTheme } from './theme.js';
-import { loadPlan, evaluateAchievements, currentWeekNumber } from './model.js';
+import { loadPlan, evaluateAchievements } from './model.js';
 import * as sync from './sync.js';
 
 import * as week from './views/week.js';
@@ -39,15 +39,13 @@ function route() {
     else a.removeAttribute('aria-current');
   });
 
+  // Each view gets a fresh container of its own. Views attach delegated
+  // listeners to it, so throwing the element away throws the listeners away
+  // with it — reusing one shared node stacks a second set on every visit.
   const mod = VIEWS[name];
-  view.innerHTML = '';
-  delete view.dataset.wired;
-  delete view.dataset.wiredPlan;
-  delete view.dataset.wiredVert;
-  delete view.dataset.wiredRaces;
-  delete view.dataset.wiredRef;
-  delete view.dataset.wiredSettings;
-  mod.render(view, { id: param });
+  const host = document.createElement('div');
+  view.replaceChildren(host);
+  mod.render(host, { id: param });
 
   const title = qs('#appbar-title');
   title.textContent = name === 'week' ? 'The Lantau Project' : mod.title();

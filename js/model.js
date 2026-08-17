@@ -1,7 +1,7 @@
 // Plan loading plus everything derived from plan + log.
 
 import { store } from './store.js';
-import { todayISO, sessionDate, daysBetween, DAYS } from './dates.js';
+import { todayISO, sessionDate, DAYS } from './dates.js';
 
 export const TYPE_ICON = {
   grind: '🪜', shuffle: '🐌', drop: '⛰️', long: '🥾',
@@ -23,12 +23,11 @@ export async function loadPlan() {
   return plan;
 }
 
-const byId = { weeks: new Map(), sessions: new Map(), phases: new Map(), races: new Map() };
+const byId = { weeks: new Map(), sessions: new Map(), phases: new Map() };
 
 function index() {
-  byId.weeks.clear(); byId.sessions.clear(); byId.phases.clear(); byId.races.clear();
+  byId.weeks.clear(); byId.sessions.clear(); byId.phases.clear();
   for (const p of plan.phases) byId.phases.set(p.id, p);
-  for (const r of plan.races) byId.races.set(r.id, r);
   for (const w of plan.weeks) {
     byId.weeks.set(w.number, w);
     for (const s of w.sessions) byId.sessions.set(s.id, { session: s, week: w });
@@ -37,8 +36,6 @@ function index() {
 
 export const getWeek = n => byId.weeks.get(n) || null;
 export const getPhase = id => byId.phases.get(id) || null;
-export const getRace = id => byId.races.get(id) || null;
-export const getSession = id => byId.sessions.get(id) || null;
 
 export const firstWeek = () => plan.weeks[0].number;
 export const lastWeek = () => plan.weeks[plan.weeks.length - 1].number;
@@ -49,10 +46,6 @@ export function currentWeekNumber(today = todayISO()) {
   if (today < weeks[0].startDate) return weeks[0].number;
   for (const w of weeks) if (today >= w.startDate && today <= w.endDate) return w.number;
   return weeks[weeks.length - 1].number;
-}
-
-export function isPlanActive(today = todayISO()) {
-  return today >= plan.meta.startDate && today <= plan.meta.endDate;
 }
 
 /** Sessions of a week grouped by day, in Mon–Sun order, skipping empty days. */
@@ -136,19 +129,4 @@ export function evaluateAchievements(log = store.state) {
     else if (t.type === 'perfectWeekStreak') hit = bestStreak >= t.value;
     if (hit) store.setAchievement(a.id, today);
   }
-}
-
-/** The next unticked session from today onward — used for the "up next" line. */
-export function nextSession(log = store.state, today = todayISO()) {
-  for (const w of plan.weeks) {
-    if (w.endDate < today) continue;
-    for (const s of w.sessions) {
-      if (s.type === 'rest') continue;
-      const d = sessionDate(w, s);
-      if (d < today) continue;
-      const e = log.entries[s.id];
-      if (!e || !e.completed) return { session: s, week: w, date: d, inDays: daysBetween(today, d) };
-    }
-  }
-  return null;
 }
