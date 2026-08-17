@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Lantau">
+  <rect width="512" height="512" rx="96" fill="#12161c"/>
+  <path d="M52 392 L196 168 L316 392 Z" fill="#b3652a"/>
+  <path d="M150 404 L300 148 L468 404 Z" fill="#f0883e"/>
+  <path d="M256 224 L300 148 L344 224 L318 210 L288 232 L268 214 Z" fill="#ffd9b8"/>
+  <rect x="44" y="392" width="424" height="20" rx="10" fill="#262d38"/>
+</svg>

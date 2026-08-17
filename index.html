@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Lantau Project</title>
+<meta name="description" content="16 weeks, 3 finish lines, ~20,000 metres of climbing.">
+<meta name="theme-color" content="#12161c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lantau">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header class="appbar">
+  <div class="appbar-inner">
+    <h1 class="appbar-title" id="appbar-title">The Lantau Project</h1>
+    <div class="appbar-actions">
+      <button class="sync-chip" id="sync-chip" type="button" title="Sync status" aria-live="polite">
+        <span class="sync-dot" data-status="off"></span><span class="sync-label">Local</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="view" class="view" tabindex="-1"></main>
+
+<nav class="tabbar" id="tabbar" aria-label="Sections">
+  <a href="#/week" data-tab="week"><span class="tab-ico" aria-hidden="true">▦</span><span>Week</span></a>
+  <a href="#/plan" data-tab="plan"><span class="tab-ico" aria-hidden="true">☰</span><span>Plan</span></a>
+  <a href="#/vertical" data-tab="vertical"><span class="tab-ico" aria-hidden="true">▲</span><span>Bank</span></a>
+  <a href="#/races" data-tab="races"><span class="tab-ico" aria-hidden="true">⚑</span><span>Races</span></a>
+  <a href="#/reference" data-tab="reference"><span class="tab-ico" aria-hidden="true">◈</span><span>Ref</span></a>
+</nav>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
