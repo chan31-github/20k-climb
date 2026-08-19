@@ -41,6 +41,12 @@ A few rules the file relies on:
 - `type` drives the icon: `grind`, `shuffle`, `drop`, `long`, `ankle`, `strength`, `row`,
   `race`, `rest`.
 - `critical: true` shows a "Key session" tag. `isRecovery` / `isPeak` badge the week.
+- **Which metrics a session asks for follows its `type`** (see `js/fields.js`) — an Ankle
+  Church session asks for the balance progression, not distance and climb. To change it for
+  one session, give it a `"fields"` array, e.g.
+  `"fields": ["durationMin", "balance", "notes"]`. Available keys: `durationMin`,
+  `distanceKm`, `gainM`, `avgHr`, `reps`, `exercises`, `rpe`, `balance`, `hopStick`,
+  `notes`.
 - Prose fields (`note`, `detail`, `bodyMd`, `notesMd`) take simple markdown: `**bold**`,
   `*italic*`, `-` lists, `1.` lists, `###` headings, pipe tables, links.
 
@@ -52,7 +58,7 @@ validator, fix the stray comma, push again.
 **Update from GitHub**.
 
 If you ever change the **app code** rather than the plan, bump `VERSION` in `sw.js`
-(`lantau-v3` → `lantau-v4`). A cache-first service worker keeps serving the copy it
+(`lantau-v4` → `lantau-v5`). A cache-first service worker keeps serving the copy it
 installed until that string changes. `data/plan.json` is deliberately exempt — it
 revalidates on its own, so plan edits never need a bump.
 
@@ -144,6 +150,7 @@ js/model.js         everything derived from plan + log
 js/dates.js         Hong Kong dates, week/day resolution
 js/md.js            tiny markdown renderer
 js/dom.js           small DOM helpers
+js/fields.js        which metrics each session type asks for
 js/theme.js         dark/light
 js/views/*.js       one file per tab
 icons/              app icons

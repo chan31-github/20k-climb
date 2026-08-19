@@ -7,6 +7,7 @@ import {
   plan, getWeek, getPhase, daysOf, weekStats,
   currentWeekNumber, firstWeek, lastWeek, TYPE_ICON, TYPE_LABEL
 } from '../model.js';
+import { FIELDS, fieldsFor, coerce, summaryOf } from '../fields.js';
 import { todayISO, formatShort, formatRange, daysBetween, DAYS, DAY_LONG, hhmm } from '../dates.js';
 
 const open = new Set();          // session ids with the log form expanded
@@ -17,20 +18,17 @@ export function setWeek(n) {
   weekNumber = Math.min(lastWeek(), Math.max(firstWeek(), n));
 }
 
-function sessionRow(session, dateISO, today) {
+function sessionRow(session, dateISO) {
   const e = store.entry(session.id) || {};
   const done = !!e.completed;
   const isOpen = open.has(session.id);
+
   const bits = [];
   if (session.targetMinutes) bits.push(hhmm(session.targetMinutes));
   bits.push(TYPE_LABEL[session.type] || session.type);
   if (session.critical) bits.push('Key session');
 
-  const logged = [];
-  if (e.durationMin) logged.push(`${e.durationMin} min`);
-  if (e.distanceKm) logged.push(`${e.distanceKm} km`);
-  if (e.gainM) logged.push(`${Number(e.gainM).toLocaleString()} m`);
-  if (e.rpe) logged.push(`RPE ${e.rpe}`);
+  const logged = summaryOf(session, e);
 
   return `
 <div class="session${done ? ' done' : ''}${isOpen ? ' open' : ''}" data-session="${esc(session.id)}" data-date="${dateISO}">
@@ -43,7 +41,7 @@ function sessionRow(session, dateISO, today) {
         <span class="session-title">${esc(session.title)}</span>
         <span class="session-meta">
           <span>${bits.join(' · ')}</span>
-          ${logged.length ? `<span class="logged">${logged.join(' · ')}</span>` : ''}
+          ${logged.length ? `<span class="logged">${esc(logged.join(' · '))}</span>` : ''}
         </span>
       </span>
       <span class="chev" aria-hidden="true">›</span>
@@ -53,39 +51,65 @@ function sessionRow(session, dateISO, today) {
 </div>`;
 }
 
-function detailAndForm(session, e) {
-  const rpe = Number(e.rpe) || 0;
+function fieldControl(session, entry, key) {
+  const spec = FIELDS[key];
+  const id = `${key}-${session.id}`;
+  const value = entry[key];
+
+  switch (spec.kind) {
+    case 'number':
+      return `
+    <div class="field">
+      <label for="${id}">${esc(spec.label)}</label>
+      <input id="${id}" data-f="${key}" type="number" inputmode="${spec.mode}" min="0" step="${spec.step}"
+             ${key === 'durationMin' && session.targetMinutes ? `placeholder="${session.targetMinutes}"` : ''}
+             value="${esc(value ?? '')}">
+    </div>`;
+
+    case 'rpe':
+      return `
+    <div class="field full">
+      <label>${esc(spec.label)}</label>
+      <div class="rpe" role="group" aria-label="${esc(spec.label)}">
+        ${Array.from({ length: 10 }, (_, i) => i + 1).map(n =>
+          `<button type="button" data-act="choice" data-field="rpe" data-v="${n}" aria-pressed="${Number(value) === n}">${n}</button>`).join('')}
+      </div>
+    </div>`;
+
+    case 'choice':
+      return `
+    <div class="field full">
+      <label>${esc(spec.label)}</label>
+      <div class="chip-row" role="group" aria-label="${esc(spec.label)}">
+        ${spec.options.map(([v, text]) =>
+          `<button type="button" class="chip" data-act="choice" data-field="${key}" data-v="${esc(v)}" aria-pressed="${value === v}">${esc(text)}</button>`).join('')}
+      </div>
+    </div>`;
+
+    case 'toggle':
+      return `
+    <div class="field full">
+      <div class="chip-row">
+        <button type="button" class="chip" data-act="choice" data-field="${key}" data-v="yes"
+                aria-pressed="${value === 'yes'}">${esc(spec.label)}</button>
+      </div>
+    </div>`;
+
+    case 'notes':
+      return `
+    <div class="field full">
+      <label for="${id}">${esc(spec.label)}</label>
+      <textarea id="${id}" data-f="${key}" placeholder="${esc(spec.placeholder || '')}">${esc(value ?? '')}</textarea>
+    </div>`;
+  }
+  return '';
+}
+
+function detailAndForm(session, entry) {
   return `
   ${session.detail ? `<div class="session-detail">${esc(session.detail)}</div>` : ''}
   <div class="logform">
-    <div class="field">
-      <label for="d-${session.id}">Duration (min)</label>
-      <input id="d-${session.id}" data-f="durationMin" type="number" inputmode="numeric" min="0" step="1"
-             placeholder="${session.targetMinutes || ''}" value="${esc(e.durationMin ?? '')}">
-    </div>
-    <div class="field">
-      <label for="k-${session.id}">Distance (km)</label>
-      <input id="k-${session.id}" data-f="distanceKm" type="number" inputmode="decimal" min="0" step="0.1" value="${esc(e.distanceKm ?? '')}">
-    </div>
-    <div class="field">
-      <label for="g-${session.id}">Climb (m)</label>
-      <input id="g-${session.id}" data-f="gainM" type="number" inputmode="numeric" min="0" step="10" value="${esc(e.gainM ?? '')}">
-    </div>
-    <div class="field">
-      <label for="hr-${session.id}">Avg HR</label>
-      <input id="hr-${session.id}" data-f="avgHr" type="number" inputmode="numeric" min="0" step="1" value="${esc(e.avgHr ?? '')}">
-    </div>
-    <div class="field full">
-      <label>Effort (RPE)</label>
-      <div class="rpe" role="group" aria-label="Rate of perceived exertion">
-        ${Array.from({ length: 10 }, (_, i) => i + 1).map(n =>
-          `<button type="button" data-act="rpe" data-v="${n}" aria-pressed="${rpe === n}">${n}</button>`).join('')}
-      </div>
-    </div>
-    <div class="field full">
-      <label for="n-${session.id}">Notes</label>
-      <textarea id="n-${session.id}" data-f="notes" placeholder="What hurt, what the stomach did, what you'd change">${esc(e.notes ?? '')}</textarea>
-    </div>
+    ${fieldsFor(session).map(key => fieldControl(session, entry, key)).join('')}
   </div>`;
 }
 
@@ -161,7 +185,7 @@ ${withToday(week, today).map(d => `
     ${d.date === today ? '<span class="day-pill">Today</span>' : ''}
   </div>
   <div class="sessions">${d.sessions.length
-      ? d.sessions.map(s => sessionRow(s, d.date, today)).join('')
+      ? d.sessions.map(s => sessionRow(s, d.date)).join('')
       : '<p class="small muted" style="margin:0 0 4px 2px">Nothing scheduled. That is allowed.</p>'}</div>
 </div>`).join('')}
 
@@ -180,6 +204,8 @@ ${withToday(week, today).map(d => `
   }
 }
 
+const sessionById = id => plan.weeks.flatMap(w => w.sessions).find(s => s.id === id);
+
 function wire(container) {
   on(container, 'click', '[data-act="prev"]', () => { setWeek(weekNumber - 1); render(container); });
   on(container, 'click', '[data-act="next"]', () => { setWeek(weekNumber + 1); render(container); });
@@ -195,14 +221,13 @@ function wire(container) {
     const row = btn.closest('.session');
     const id = row.dataset.session;
     if (open.has(id)) open.delete(id); else open.add(id);
-    const session = plan.weeks.flatMap(w => w.sessions).find(s => s.id === id);
     row.classList.toggle('open', open.has(id));
     btn.setAttribute('aria-expanded', String(open.has(id)));
-    const existing = row.querySelector('.logform');
-    const existingDetail = row.querySelector('.session-detail');
-    if (existing) existing.remove();
-    if (existingDetail) existingDetail.remove();
-    if (open.has(id)) row.insertAdjacentHTML('beforeend', detailAndForm(session, store.entry(id) || {}));
+    const form = row.querySelector('.logform');
+    const detail = row.querySelector('.session-detail');
+    if (form) form.remove();
+    if (detail) detail.remove();
+    if (open.has(id)) row.insertAdjacentHTML('beforeend', detailAndForm(sessionById(id), store.entry(id) || {}));
   });
 
   // Debounced per field, not globally — a shared timer would drop every edit
@@ -213,26 +238,30 @@ function wire(container) {
     clearTimeout(timers.get(key));
     timers.set(key, setTimeout(() => {
       timers.delete(key);
-      store.setEntry(id, { [field]: field === 'notes' ? value : (value === '' ? undefined : Number(value)) });
+      store.setEntry(id, { [field]: coerce(field, value) });
     }, 350));
   };
 
   container.addEventListener('input', ev => {
     const f = ev.target.closest('[data-f]');
-    if (!f) return;
-    const row = f.closest('.session');
-    if (!row) return;
-    save(row.dataset.session, f.dataset.f, f.value);
+    const row = f && f.closest('.session');
+    if (row) save(row.dataset.session, f.dataset.f, f.value);
   });
 
-  on(container, 'click', '[data-act="rpe"]', (ev, btn) => {
+  // One handler for RPE, choice chips and toggles: tapping the active value
+  // clears it, so nothing is a one-way door.
+  on(container, 'click', '[data-act="choice"]', (ev, btn) => {
     const row = btn.closest('.session');
-    const current = Number((store.entry(row.dataset.session) || {}).rpe) || 0;
-    const value = Number(btn.dataset.v);
-    const next = current === value ? undefined : value;
-    store.setEntry(row.dataset.session, { rpe: next });
-    qsa('[data-act="rpe"]', row).forEach(b =>
-      b.setAttribute('aria-pressed', String(next != null && Number(b.dataset.v) === next)));
+    const field = btn.dataset.field;
+    const raw = btn.dataset.v;
+    const value = field === 'rpe' ? Number(raw) : raw;
+    const current = (store.entry(row.dataset.session) || {})[field];
+    const next = current === value || (field === 'rpe' && Number(current) === value) ? undefined : value;
+    store.setEntry(row.dataset.session, { [field]: next });
+    qsa(`[data-act="choice"][data-field="${field}"]`, row).forEach(b => {
+      const bv = field === 'rpe' ? Number(b.dataset.v) : b.dataset.v;
+      b.setAttribute('aria-pressed', String(next !== undefined && bv === next));
+    });
   });
 }
 
@@ -250,15 +279,13 @@ export function onLog(reason) {
   if (bar) bar.style.width = `${Math.round(stats.ratio * 100)}%`;
 
   qsa('.session', root).forEach(row => {
+    const session = sessionById(row.dataset.session);
+    if (!session) return;
     const e = store.entry(row.dataset.session) || {};
     row.classList.toggle('done', !!e.completed);
-    const logged = [];
-    if (e.durationMin) logged.push(`${e.durationMin} min`);
-    if (e.distanceKm) logged.push(`${e.distanceKm} km`);
-    if (e.gainM) logged.push(`${Number(e.gainM).toLocaleString()} m`);
-    if (e.rpe) logged.push(`RPE ${e.rpe}`);
     const meta = row.querySelector('.session-meta');
     if (!meta) return;
+    const logged = summaryOf(session, e);
     let el = meta.querySelector('.logged');
     if (logged.length) {
       if (!el) { el = document.createElement('span'); el.className = 'logged'; meta.appendChild(el); }

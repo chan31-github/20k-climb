@@ -102,9 +102,9 @@
       "isPeak": false,
       "sessions": [
         { "id": "w1-tue-shuffle", "day": "Tue", "type": "shuffle", "title": "Shuffle, 35 min easy", "targetMinutes": 35, "detail": "Flat or rolling. Conversational effort only — it should feel almost embarrassingly easy.", "critical": false },
-        { "id": "w1-wed-ankle", "day": "Wed", "type": "ankle", "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
+        { "id": "w1-wed-ankle", "day": "Wed", "type": "ankle", "fields": ["durationMin", "balance", "notes"], "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
         { "id": "w1-thu-grind", "day": "Thu", "type": "grind", "title": "Grind: 6 × 90s stairs", "targetMinutes": 45, "detail": "6 × 90-second stair reps, walk down between. Climb hard, descend controlled, repeat. Pace is meaningless; effort is everything.", "critical": false },
-        { "id": "w1-fri-ankle", "day": "Fri", "type": "ankle", "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
+        { "id": "w1-fri-ankle", "day": "Fri", "type": "ankle", "fields": ["durationMin", "balance", "notes"], "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
         { "id": "w1-sat-long", "day": "Sat", "type": "long", "title": "The Long One: 1h15", "targetMinutes": 75, "detail": "Trails. Poles optional this week. Start at 06:30 or 07:00 to rehearse race-morning logistics and beat the heat.", "critical": true },
         { "id": "w1-sun-rest", "day": "Sun", "type": "rest", "title": "Off, or an easy walk", "detail": "Rest is the session.", "critical": false }
       ]
@@ -131,11 +131,11 @@
       "isRecovery": false,
       "isPeak": false,
       "sessions": [
-        { "id": "w3-mon-ankle", "day": "Mon", "type": "ankle", "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
+        { "id": "w3-mon-ankle", "day": "Mon", "type": "ankle", "fields": ["durationMin", "balance", "notes"], "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
         { "id": "w3-mon-strength", "day": "Mon", "type": "strength", "title": "Core & Upper Body", "targetMinutes": 20, "detail": "The poling engine. Side plank, dead bug, bird dog, push-ups, rows, farmer's carry.", "critical": false },
         { "id": "w3-tue-shuffle", "day": "Tue", "type": "shuffle", "title": "Shuffle 40 min", "targetMinutes": 40, "detail": "Easy aerobic. Chat Pace — full sentences throughout.", "critical": false },
         { "id": "w3-wed-grind", "day": "Wed", "type": "grind", "title": "Grind: 8 × 90s stairs", "targetMinutes": 45, "detail": "Walk down between reps. Effort, not pace.", "critical": false },
-        { "id": "w3-thu-ankle", "day": "Thu", "type": "ankle", "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
+        { "id": "w3-thu-ankle", "day": "Thu", "type": "ankle", "fields": ["durationMin", "balance", "notes"], "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
         { "id": "w3-thu-strength", "day": "Thu", "type": "strength", "title": "Core & Upper Body", "targetMinutes": 20, "detail": "The poling engine. If time is short, do the ankles and three of the six.", "critical": false },
         { "id": "w3-fri-drop", "day": "Fri", "type": "drop", "title": "Drop: 5 × descent reps", "targetMinutes": 45, "detail": "Jog up easy, come down with control and quick feet. Focus on quick feet.", "critical": false },
         { "id": "w3-sat-long", "day": "Sat", "type": "long", "title": "The Long One: 1h45, poles", "targetMinutes": 105, "detail": "First fuelling rehearsal: 30g carbs/hour, on a 20-minute timer. Poles from here on, every Long One.", "critical": true }
@@ -150,11 +150,11 @@
       "isRecovery": false,
       "isPeak": false,
       "sessions": [
-        { "id": "w4-mon-ankle", "day": "Mon", "type": "ankle", "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
+        { "id": "w4-mon-ankle", "day": "Mon", "type": "ankle", "fields": ["durationMin", "balance", "notes"], "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
         { "id": "w4-mon-strength", "day": "Mon", "type": "strength", "title": "Core & Upper Body", "targetMinutes": 20, "detail": "The poling engine.", "critical": false },
         { "id": "w4-tue-shuffle", "day": "Tue", "type": "shuffle", "title": "Shuffle 45 min", "targetMinutes": 45, "detail": "Easy aerobic. Capped at conversational effort, no exceptions.", "critical": false },
         { "id": "w4-wed-grind", "day": "Wed", "type": "grind", "title": "Grind: 10 × 90s", "targetMinutes": 50, "detail": "Stairs or hill repeats, walk down between.", "critical": false },
-        { "id": "w4-thu-ankle", "day": "Thu", "type": "ankle", "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
+        { "id": "w4-thu-ankle", "day": "Thu", "type": "ankle", "fields": ["durationMin", "balance", "notes"], "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
         { "id": "w4-thu-strength", "day": "Thu", "type": "strength", "title": "Core & Upper Body", "targetMinutes": 20, "detail": "The poling engine.", "critical": false },
         { "id": "w4-fri-drop", "day": "Fri", "type": "drop", "title": "Drop: 6 × descents", "targetMinutes": 45, "detail": "Quads absorbing load. Quick feet, controlled.", "critical": false },
         { "id": "w4-sat-long", "day": "Sat", "type": "long", "title": "The Long One: 2h15, poles", "targetMinutes": 135, "detail": "30–40g carbs/hour on the timer. 🏆 First Long One past two hours.", "critical": true }
@@ -169,10 +169,10 @@
       "isRecovery": true,
       "isPeak": false,
       "sessions": [
-        { "id": "w5-mon-ankle", "day": "Mon", "type": "ankle", "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
+        { "id": "w5-mon-ankle", "day": "Mon", "type": "ankle", "fields": ["durationMin", "balance", "notes"], "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
         { "id": "w5-tue-shuffle", "day": "Tue", "type": "shuffle", "title": "Shuffle 35 min", "targetMinutes": 35, "detail": "Very easy. It's a down week — keep it that way.", "critical": false },
         { "id": "w5-thu-grind", "day": "Thu", "type": "grind", "title": "Grind: 6 × 90s", "targetMinutes": 40, "detail": "Reduced volume. Same effort discipline.", "critical": false },
-        { "id": "w5-thu-ankle", "day": "Thu", "type": "ankle", "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
+        { "id": "w5-thu-ankle", "day": "Thu", "type": "ankle", "fields": ["durationMin", "balance", "notes"], "title": "Ankle Church", "targetMinutes": 10, "detail": "Barefoot, next to a wall. See The Ankle Protocol.", "critical": true },
         { "id": "w5-sat-long", "day": "Sat", "type": "long", "title": "The Long One: 1h30 easy, poles", "targetMinutes": 90, "detail": "Easy. Poles. 40g carbs/hour — the gut keeps training even on a down week.", "critical": true }
       ]
     },

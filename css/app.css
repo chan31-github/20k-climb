@@ -387,6 +387,14 @@ h1, h2, h3, h4 { margin: 0; font-weight: 650; line-height: 1.25; letter-spacing:
 }
 .rpe button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 650; }
 
+.chip-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+  flex: 1 1 auto; min-height: var(--tap); padding: 0 14px;
+  background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  font-size: 14px; color: var(--text-dim); white-space: nowrap;
+}
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+
 /* ---------- Full plan ---------- */
 
 .phase-head { margin: 20px 0 10px; }
