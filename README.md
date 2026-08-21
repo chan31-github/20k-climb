@@ -16,7 +16,7 @@ step, no dependencies, no backend.
 | **Plan** | All 16 weeks under their phase headings, races inline. |
 | **Bank** | Running metres total, milestones to 20,000 m, metres-per-week chart, achievements. |
 | **Races** | Countdowns, pacing tables, and actual splits with deltas from race day onward. |
-| **Ref** | The protocols — ankle, gut, poles, nutrition, commute, strength, rowing, triage. |
+| **Ref** | The protocols — your week, fuelling, ankle, poles, yoga, strength, nutrition, rowing, commute, triage. |
 
 Settings live behind the status chip in the top right.
 
@@ -38,8 +38,11 @@ A few rules the file relies on:
   changing one word.
 - Every session needs a **unique `id`**. The log is keyed by it — renaming an id orphans
   whatever you already logged against it, so don't rename ids for sessions you've done.
-- `type` drives the icon: `grind`, `shuffle`, `drop`, `long`, `ankle`, `strength`, `row`,
+- `type` drives the icon and the metrics asked for: `grind`, `shuffle`, `drop`, `long`,
+  `evening` (the paired Ankle Church + Strength block), `ankle`, `strength`, `row`, `yoga`,
   `race`, `rest`.
+- `optional: true` keeps a session out of the week's "x of y done" count — it can still be
+  ticked and still banks its metres. Used for the Friday row and the Sunday yoga.
 - `critical: true` shows a "Key session" tag. `isRecovery` / `isPeak` badge the week.
 - **Which metrics a session asks for follows its `type`** (see `js/fields.js`) — an Ankle
   Church session asks for the balance progression, not distance and climb. To change it for
@@ -58,7 +61,7 @@ validator, fix the stray comma, push again.
 **Update from GitHub**.
 
 If you ever change the **app code** rather than the plan, bump `VERSION` in `sw.js`
-(`lantau-v4` → `lantau-v5`). A cache-first service worker keeps serving the copy it
+(`lantau-v5` → `lantau-v6`). A cache-first service worker keeps serving the copy it
 installed until that string changes. `data/plan.json` is deliberately exempt — it
 revalidates on its own, so plan edits never need a bump.
 

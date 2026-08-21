@@ -57,6 +57,8 @@ const BY_TYPE = {
   drop:     ['durationMin', 'gainM', 'reps', 'avgHr', 'rpe', 'notes'],
   row:      ['durationMin', 'distanceKm', 'avgHr', 'rpe', 'notes'],
   ankle:    ['durationMin', 'balance', 'hopStick', 'notes'],
+  evening:  ['durationMin', 'balance', 'hopStick', 'exercises', 'notes'],
+  yoga:     ['durationMin', 'notes'],
   strength: ['durationMin', 'exercises', 'notes'],
   rest:     ['notes']
 };

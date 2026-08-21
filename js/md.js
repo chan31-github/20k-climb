@@ -43,10 +43,11 @@ export function md(src) {
       i += 2;
       const body = [];
       while (i < lines.length && /^\s*\|.*\|\s*$/.test(lines[i])) { body.push(tableRow(lines[i])); i++; }
+      // Wrapped so a wide table scrolls itself rather than the page.
       out.push(
-        '<table><thead><tr>' + head.map(c => `<th>${inline(c)}</th>`).join('') + '</tr></thead><tbody>' +
+        '<div class="table-wrap"><table><thead><tr>' + head.map(c => `<th>${inline(c)}</th>`).join('') + '</tr></thead><tbody>' +
         body.map(r => '<tr>' + r.map(c => `<td>${inline(c)}</td>`).join('') + '</tr>').join('') +
-        '</tbody></table>'
+        '</tbody></table></div>'
       );
       continue;
     }

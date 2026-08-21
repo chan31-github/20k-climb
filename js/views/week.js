@@ -27,6 +27,7 @@ function sessionRow(session, dateISO) {
   if (session.targetMinutes) bits.push(hhmm(session.targetMinutes));
   bits.push(TYPE_LABEL[session.type] || session.type);
   if (session.critical) bits.push('Key session');
+  if (session.optional) bits.push('Optional');
 
   const logged = summaryOf(session, e);
 

@@ -264,12 +264,13 @@ h1, h2, h3, h4 { margin: 0; font-weight: 650; line-height: 1.25; letter-spacing:
 .prose > *:first-child { margin-top: 0; }
 .prose > *:last-child { margin-bottom: 0; }
 .prose p { margin: 0 0 .8em; }
-.prose h3 { font-size: 15px; margin: 1.2em 0 .5em; color: var(--accent-text); }
+.prose h3, .prose h4, .prose h5, .prose h6 { font-size: 15px; margin: 1.2em 0 .5em; color: var(--accent-text); }
 .prose ul, .prose ol { margin: 0 0 .8em; padding-left: 1.25em; }
 .prose li { margin-bottom: .35em; }
 .prose strong { font-weight: 650; }
 .prose code { font-family: var(--mono); font-size: .9em; background: var(--bg-sunken); padding: 1px 4px; border-radius: 4px; }
-.prose table { width: 100%; border-collapse: collapse; margin: 0 0 .9em; font-size: 14px; }
+.table-wrap { overflow-x: auto; margin: 0 0 .9em; -webkit-overflow-scrolling: touch; }
+.prose table { width: 100%; border-collapse: collapse; font-size: 14px; }
 .prose th, .prose td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .prose th { color: var(--text-dim); font-weight: 650; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
 .prose tr:last-child td { border-bottom: none; }
@@ -354,6 +355,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 650; line-height: 1.25; letter-spacing:
 .session.done .session-title { color: var(--text-dim); }
 .session-meta { font-size: 12px; color: var(--text-faint); margin-top: 2px; display: flex; gap: 8px; flex-wrap: wrap; }
 .session-meta .logged { color: var(--good); font-weight: 600; }
+.session-meta .optional { color: var(--text-faint); font-style: italic; }
 .chev { flex: none; color: var(--text-faint); font-size: 12px; transition: transform .15s ease; }
 .session.open .chev { transform: rotate(90deg); }
 

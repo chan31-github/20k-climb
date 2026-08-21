@@ -5,12 +5,14 @@ import { todayISO, sessionDate, DAYS } from './dates.js';
 
 export const TYPE_ICON = {
   grind: '🪜', shuffle: '🐌', drop: '⛰️', long: '🥾',
-  ankle: '🦶', strength: '💪', row: '🚣', race: '🏁', rest: '☕'
+  ankle: '🦶', evening: '🦶', strength: '💪', row: '🚣',
+  yoga: '🧘', race: '🏁', rest: '☕'
 };
 
 export const TYPE_LABEL = {
   grind: 'Grind', shuffle: 'Shuffle', drop: 'Drop', long: 'Long One',
-  ankle: 'Ankle Church', strength: 'Strength', row: 'Row', race: 'Race', rest: 'Rest'
+  ankle: 'Ankle Church', evening: 'Ankle + Strength', strength: 'Strength',
+  row: 'Row', yoga: 'Yoga', race: 'Race', rest: 'Rest'
 };
 
 export let plan = null;
@@ -64,13 +66,16 @@ export function daysOf(week) {
 
 const num = v => (v == null || v === '' || isNaN(v) ? 0 : Number(v));
 
+/** Rest days and anything flagged optional stay out of the week's count. */
+const counts = s => s.type !== 'rest' && !s.optional;
+
 export function weekStats(week, log = store.state) {
   let done = 0, total = 0, gain = 0, minutes = 0, distance = 0;
   for (const s of week.sessions) {
-    if (s.type !== 'rest') total++;
+    if (counts(s)) total++;
     const e = log.entries[s.id];
     if (!e) continue;
-    if (e.completed && s.type !== 'rest') done++;
+    if (e.completed && counts(s)) done++;
     gain += num(e.gainM);
     minutes += num(e.durationMin);
     distance += num(e.distanceKm);
