@@ -81,12 +81,31 @@ export function coerce(key, value) {
   return value === '' ? undefined : value;
 }
 
+/**
+ * Flat-equivalent speed, the playbook's one number that compares directly to a
+ * cutoff: fe km = distance + climb / 100, then fe km per hour. TL50 asks for
+ * 6.3 km/h fe.
+ */
+export function feSpeed(entry) {
+  if (!entry) return null;
+  const km = Number(entry.distanceKm), min = Number(entry.durationMin);
+  const gain = Number(entry.gainM) || 0;
+  if (!km || !min) return null;
+  return (km + gain / 100) / (min / 60);
+}
+
+const FE_TYPES = new Set(['long', 'race']);
+
 /** The green one-line recap on a collapsed row. */
 export function summaryOf(session, entry) {
   if (!entry) return [];
-  return fieldsFor(session)
+  const parts = fieldsFor(session)
     .filter(key => key !== 'notes')
     .filter(key => entry[key] !== undefined && entry[key] !== '' && entry[key] !== false)
     .map(key => FIELDS[key].summary(entry[key]))
     .filter(Boolean);
+
+  const fe = FE_TYPES.has(session.type) ? feSpeed(entry) : null;
+  if (fe) parts.push(`${fe.toFixed(1)} km/h fe`);
+  return parts;
 }

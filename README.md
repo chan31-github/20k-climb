@@ -12,11 +12,11 @@ step, no dependencies, no backend.
 
 | Tab | What's there |
 |---|---|
-| **Week** | Today's sessions, one tap to tick, tap the row to log duration / distance / climb / HR / RPE / notes. Prev–next arrows reach every week. |
+| **Week** | Today's sessions, one tap to tick, tap the row to log duration / distance / climb / HR / RPE / notes. Long runs also show their flat-equivalent speed. Prev–next arrows reach every week. |
 | **Plan** | All 16 weeks under their phase headings, races inline. |
 | **Bank** | Running metres total, milestones to 20,000 m, metres-per-week chart, achievements. |
 | **Races** | Countdowns, pacing tables, and actual splits with deltas from race day onward. |
-| **Ref** | The protocols — your week, fuelling, ankle, poles, yoga, strength, nutrition, rowing, commute, triage. |
+| **Ref** | The protocols — your week, the long session playbook, fuelling, ankle, poles, yoga, strength, nutrition, rowing, commute, triage. |
 
 Settings live behind the status chip in the top right.
 
@@ -42,7 +42,9 @@ A few rules the file relies on:
   `evening` (the paired Ankle Church + Strength block), `ankle`, `strength`, `row`, `yoga`,
   `race`, `rest`.
 - `optional: true` keeps a session out of the week's "x of y done" count — it can still be
-  ticked and still banks its metres. Used for the Friday row and the Sunday yoga.
+  ticked and still banks its metres. Used for the Friday row and the Saturday yoga.
+- `targetGainM` is the playbook's vertical target for a long session; it shows on the row
+  next to the duration.
 - `critical: true` shows a "Key session" tag. `isRecovery` / `isPeak` badge the week.
 - **Which metrics a session asks for follows its `type`** (see `js/fields.js`) — an Ankle
   Church session asks for the balance progression, not distance and climb. To change it for
@@ -56,12 +58,17 @@ A few rules the file relies on:
 If you break the JSON the app will say so instead of loading — paste it into any JSON
 validator, fix the stray comma, push again.
 
+**Renaming a session id?** If it's a session you might already have logged, add the old →
+new pair to `RENAMED_V2` in `js/store.js` and bump `SCHEMA_VERSION`. The log is keyed by
+id, so without that the tick stays in the file but stops showing in the app. That is how
+the long run moving from Saturday to Sunday kept its history.
+
 **Note on caching:** the app caches itself for offline use, so a plan edit appears on the
 *next* launch after your device has fetched it. To force it immediately: Settings →
 **Update from GitHub**.
 
 If you ever change the **app code** rather than the plan, bump `VERSION` in `sw.js`
-(`lantau-v5` → `lantau-v6`). A cache-first service worker keeps serving the copy it
+(`lantau-v6` → `lantau-v7`). A cache-first service worker keeps serving the copy it
 installed until that string changes. `data/plan.json` is deliberately exempt — it
 revalidates on its own, so plan edits never need a bump.
 
@@ -69,8 +76,8 @@ revalidates on its own, so plan edits never need a bump.
 
 ## Your log
 
-Ticks and metrics live in this browser's `localStorage` under `lantau-log-v1`. They
-survive closing the browser and going offline. They do **not** move between devices on
+Ticks and metrics live in this browser's `localStorage` under `lantau-log-v1`, at
+`schemaVersion: 2`. They survive closing the browser and going offline. They do **not** move between devices on
 their own — for that, either use export/import or set up sync.
 
 ### Export / import

@@ -1,7 +1,7 @@
 // The activity log: localStorage-backed, versioned, and mergeable per entry.
 
 export const LOG_KEY = 'lantau-log-v1';
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 
 function blank() {
   return {
@@ -15,8 +15,43 @@ function blank() {
   };
 }
 
+/**
+ * Session ids that moved in the 23 Aug revision, when the long run shifted from
+ * Saturday to Sunday and the Drop from Friday to Thursday. Without this a log
+ * written before the change would keep its ticks in the file but show none of
+ * them in the app.
+ */
+const RENAMED_V2 = {
+  'w1-wed-ankle': 'w1-mon-ankle', 'w1-fri-ankle': 'w1-thu-ankle',
+  'w1-sat-long': 'w1-sun-long', 'w1-sun-rest': 'w1-sat-yoga',
+  'w2-sat-hike': 'w2-sun-hike',
+  'w3-fri-drop': 'w3-thu-drop', 'w3-sat-long': 'w3-sun-long', 'w3-sun-yoga': 'w3-sat-yoga',
+  'w4-fri-drop': 'w4-thu-drop', 'w4-sat-long': 'w4-sun-long', 'w4-sun-yoga': 'w4-sat-yoga',
+  'w5-thu-grind': 'w5-wed-grind', 'w5-sat-long': 'w5-sun-long', 'w5-sun-yoga': 'w5-sat-yoga',
+  'w6-fri-drop': 'w6-thu-drop', 'w6-sat-long': 'w6-sun-long', 'w6-sun-yoga': 'w6-sat-yoga',
+  'w7-fri-drop': 'w7-thu-drop', 'w7-sat-long': 'w7-sun-long', 'w7-sun-yoga': 'w7-sat-yoga',
+  'w8-thu-grind': 'w8-wed-grind', 'w8-sat-long': 'w8-sun-long', 'w8-sun-yoga': 'w8-sat-yoga',
+  'w9-sat-long': 'w9-sun-long', 'w9-sun-yoga': 'w9-sat-yoga',
+  'w11-sat-long': 'w11-sun-long', 'w11-sun-yoga': 'w11-sat-yoga',
+  'w12-fri-drop': 'w12-thu-drop', 'w12-sat-long': 'w12-sun-long', 'w12-sun-yoga': 'w12-sat-yoga',
+  'w14-sat-long': 'w14-sun-long', 'w14-sun-yoga': 'w14-sat-yoga',
+  'w15-sat-long': 'w15-sun-long', 'w15-sun-yoga': 'w15-sat-yoga'
+};
+
+function renameEntries(entries, map) {
+  const out = {};
+  for (const [id, entry] of Object.entries(entries || {})) {
+    const to = map[id] || id;
+    // An entry already under the new id wins; it is the more deliberate write.
+    if (!out[to]) out[to] = entry;
+  }
+  return out;
+}
+
 function migrate(raw) {
+  const from = (raw && Number(raw.schemaVersion)) || 1;
   const s = Object.assign(blank(), raw || {});
+  if (from < 2) s.entries = renameEntries(s.entries, RENAMED_V2);
   s.schemaVersion = SCHEMA_VERSION;
   s.entries = s.entries || {};
   s.achievements = s.achievements || {};
@@ -30,9 +65,13 @@ let state;
 let storageError = null;
 const listeners = new Set();
 
+let migratedOnLoad = false;
+
 try {
   const raw = localStorage.getItem(LOG_KEY);
-  state = migrate(raw ? JSON.parse(raw) : null);
+  const parsed = raw ? JSON.parse(raw) : null;
+  state = migrate(parsed);
+  migratedOnLoad = !!parsed && Number(parsed.schemaVersion) !== SCHEMA_VERSION;
 } catch (err) {
   state = blank();
   storageError = 'Could not read saved data from this browser. ' + (err && err.message || '');
@@ -46,6 +85,10 @@ function persist() {
     storageError = 'Could not save to this browser — private browsing or storage is full. Export your log before closing.';
   }
 }
+
+// Write the upgraded shape back straight away, so the stored copy is canonical
+// and an export taken before the next edit carries the new ids.
+if (migratedOnLoad) persist();
 
 function emit(reason) {
   for (const fn of listeners) {

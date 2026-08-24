@@ -6,7 +6,7 @@ import { plan } from '../model.js';
 
 const ICON = {
   calendar: '🗓️', ankle: '🦶', gut: '🍫', poles: '🥢', food: '🍚',
-  bus: '🚌', strength: '💪', row: '🚣', yoga: '🧘', warning: '⚠️'
+  bus: '🚌', strength: '💪', row: '🚣', yoga: '🧘', boot: '🥾', warning: '⚠️'
 };
 
 const ANKLE_FIGURES = [

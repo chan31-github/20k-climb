@@ -11,7 +11,9 @@ function inline(s) {
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/(^|[\s(])\*([^*\n]+)\*/g, '$1<em>$2</em>')
     .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" rel="noopener noreferrer" target="_blank">$1</a>')
-    .replace(/  \n/g, '<br>');
+    // A single newline inside a paragraph is a deliberate line break in this
+    // content — two formula lines, a definition and its follow-up — not a wrap.
+    .replace(/ *\n/g, '<br>');
 }
 
 function tableRow(line) {
