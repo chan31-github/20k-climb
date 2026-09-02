@@ -12,7 +12,7 @@ step, no dependencies, no backend.
 
 | Tab | What's there |
 |---|---|
-| **Week** | Today's sessions, one tap to tick, tap the row to log duration / distance / climb / HR / RPE / notes. Long runs also show their flat-equivalent speed. Prev–next arrows reach every week. |
+| **Week** | Today's sessions, one tap to tick, tap the row to log duration / distance / climb / HR / RPE / notes, move it to another day, or add a session of your own. Long runs also show their flat-equivalent speed. Prev–next arrows reach every week. |
 | **Plan** | All 16 weeks under their phase headings, races inline. |
 | **Bank** | Running metres total, milestones to 20,000 m, metres-per-week chart, achievements. |
 | **Races** | Countdowns, pacing tables, and actual splits with deltas from race day onward. |
@@ -68,7 +68,7 @@ the long run moving from Saturday to Sunday kept its history.
 **Update from GitHub**.
 
 If you ever change the **app code** rather than the plan, bump `VERSION` in `sw.js`
-(`lantau-v6` → `lantau-v7`). A cache-first service worker keeps serving the copy it
+(`lantau-v7` → `lantau-v8`). A cache-first service worker keeps serving the copy it
 installed until that string changes. `data/plan.json` is deliberately exempt — it
 revalidates on its own, so plan edits never need a bump.
 
@@ -77,8 +77,21 @@ revalidates on its own, so plan edits never need a bump.
 ## Your log
 
 Ticks and metrics live in this browser's `localStorage` under `lantau-log-v1`, at
-`schemaVersion: 2`. They survive closing the browser and going offline. They do **not** move between devices on
+`schemaVersion: 3`. They survive closing the browser and going offline. They do **not** move between devices on
 their own — for that, either use export/import or set up sync.
+
+### Moving a session, and adding one
+
+Life happens. Open any session and the **Day** row at the bottom of the form moves it to
+another day of that week; a moved session is tagged *Moved from Thu* and offers a **Back to
+Thu** button. **+ Add a session** at the foot of the week creates one of your own — title,
+type, day, optional target minutes — which then behaves like any other session: tick it,
+log it, its climb counts toward the bank. Added sessions can be moved or deleted; deleting
+one removes what you logged against it too.
+
+Both live in your log, not in `plan.json`. The plan stays exactly as your coach wrote it,
+your adjustments ride on top, and they sync between devices with everything else — merged
+per session, most recent write wins.
 
 ### Export / import
 

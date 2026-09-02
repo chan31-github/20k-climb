@@ -1,10 +1,10 @@
 // This Week — the default view. One tap to complete, everything else optional.
 
-import { esc, on, qs, qsa } from '../dom.js';
+import { esc, on, qs, qsa, toast } from '../dom.js';
 import { md } from '../md.js';
 import { store } from '../store.js';
 import {
-  plan, getWeek, getPhase, daysOf, weekStats,
+  plan, getWeek, getPhase, daysOf, weekStats, findSession,
   currentWeekNumber, firstWeek, lastWeek, TYPE_ICON, TYPE_LABEL
 } from '../model.js';
 import { FIELDS, fieldsFor, coerce, summaryOf } from '../fields.js';
@@ -13,6 +13,11 @@ import { todayISO, formatShort, formatRange, daysBetween, DAYS, DAY_LONG, hhmm }
 const open = new Set();          // session ids with the log form expanded
 let weekNumber = null;
 let root = null;
+let adding = false;              // the "add a session" form is showing
+let draftDay = null;             // day chosen in that form, before it is saved
+
+// Types you can give a session of your own. Races come from the plan only.
+const ADDABLE = ['shuffle', 'grind', 'drop', 'long', 'evening', 'ankle', 'strength', 'row', 'yoga', 'rest'];
 
 export function setWeek(n) {
   weekNumber = Math.min(lastWeek(), Math.max(firstWeek(), n));
@@ -29,6 +34,8 @@ function sessionRow(session, dateISO) {
   bits.push(TYPE_LABEL[session.type] || session.type);
   if (session.critical) bits.push('Key session');
   if (session.optional) bits.push('Optional');
+  if (session.extra) bits.push('Added');
+  else if (session.plannedDay) bits.push(`Moved from ${session.plannedDay}`);
 
   const logged = summaryOf(session, e);
 
@@ -107,12 +114,68 @@ function fieldControl(session, entry, key) {
   return '';
 }
 
+function dayChips(field, current) {
+  return `<div class="chip-row days" role="group" aria-label="Day">
+    ${DAYS.map(d => `<button type="button" class="chip day" data-act="${field}" data-day="${d}"
+        aria-pressed="${d === current}">${d}</button>`).join('')}
+  </div>`;
+}
+
+/** Move it, or throw it away if it was yours to begin with. */
+function adjustFooter(session) {
+  return `
+  <div class="adjust">
+    <div class="adjust-label">Day</div>
+    ${dayChips('move', session.day)}
+    <div class="btn-row" style="margin-top:8px">
+      ${session.plannedDay
+        ? `<button class="btn small" type="button" data-act="reset-day">Back to ${esc(session.plannedDay)}</button>` : ''}
+      ${session.extra
+        ? '<button class="btn small danger" type="button" data-act="delete-extra">Delete this session</button>' : ''}
+    </div>
+  </div>`;
+}
+
 function detailAndForm(session, entry) {
   return `
   ${session.detail ? `<div class="session-detail">${esc(session.detail)}</div>` : ''}
   <div class="logform">
     ${fieldsFor(session).map(key => fieldControl(session, entry, key)).join('')}
-  </div>`;
+  </div>
+  ${adjustFooter(session)}`;
+}
+
+function addForm(week, today) {
+  const day = draftDay || (today >= week.startDate && today <= week.endDate
+    ? DAYS[daysBetween(week.startDate, today)] : 'Mon');
+  return `
+<div class="card add-card">
+  <div class="card-pad">
+    <div class="eyebrow" style="margin-bottom:10px">Add a session to week ${week.number}</div>
+    <div class="field" style="margin-bottom:10px">
+      <label for="add-title">Title</label>
+      <input id="add-title" placeholder="Easy row instead of the Shuffle" autocapitalize="sentences">
+    </div>
+    <div class="field" style="margin-bottom:10px">
+      <label for="add-type">Type</label>
+      <select id="add-type">
+        ${ADDABLE.map(ty => `<option value="${ty}">${TYPE_ICON[ty]}  ${TYPE_LABEL[ty]}</option>`).join('')}
+      </select>
+    </div>
+    <div class="field" style="margin-bottom:10px">
+      <label>Day</label>
+      ${dayChips('draft-day', day)}
+    </div>
+    <div class="field" style="margin-bottom:12px">
+      <label for="add-mins">Target minutes <span class="muted">(optional)</span></label>
+      <input id="add-mins" type="number" inputmode="numeric" min="0" step="5" placeholder="40">
+    </div>
+    <div class="btn-row">
+      <button class="btn primary" type="button" data-act="add-save">Add session</button>
+      <button class="btn" type="button" data-act="add-cancel">Cancel</button>
+    </div>
+  </div>
+</div>`;
 }
 
 function raceStrip(week) {
@@ -191,8 +254,11 @@ ${withToday(week, today).map(d => `
       : '<p class="small muted" style="margin:0 0 4px 2px">Nothing scheduled. That is allowed.</p>'}</div>
 </div>`).join('')}
 
-<p class="small muted center" style="margin-top:20px">
-  Tap the box to tick a session. Tap the row for detail and to log metrics.
+${adding ? addForm(week, today) : `
+<button class="btn block" type="button" data-act="add-open" style="margin-top:14px">+ Add a session</button>`}
+
+<p class="small muted center" style="margin-top:16px">
+  Tap the box to tick a session. Tap the row for detail, to log metrics, or to move it to another day.
 </p>`;
 
   if (!root.dataset.wired) {
@@ -200,13 +266,20 @@ ${withToday(week, today).map(d => `
     root.dataset.wired = '1';
   }
 
+  // Only on the first paint of this view — re-rendering after a move, an add or
+  // a tick should leave you where you were looking.
   const todayEl = qs('.day.today', root);
-  if (todayEl && weekNumber === currentWeekNumber()) {
+  if (todayEl && !root.dataset.scrolled && weekNumber === currentWeekNumber()) {
+    root.dataset.scrolled = '1';
     requestAnimationFrame(() => todayEl.scrollIntoView({ block: 'center', behavior: 'auto' }));
   }
 }
 
-const sessionById = id => plan.weeks.flatMap(w => w.sessions).find(s => s.id === id);
+/** As the row currently stands, moved day and all. */
+function sessionOnScreen(id) {
+  const week = getWeek(weekNumber);
+  return (week ? daysOf(week).flatMap(d => d.sessions) : []).find(s => s.id === id) || findSession(id);
+}
 
 function wire(container) {
   on(container, 'click', '[data-act="prev"]', () => { setWeek(weekNumber - 1); render(container); });
@@ -229,7 +302,7 @@ function wire(container) {
     const detail = row.querySelector('.session-detail');
     if (form) form.remove();
     if (detail) detail.remove();
-    if (open.has(id)) row.insertAdjacentHTML('beforeend', detailAndForm(sessionById(id), store.entry(id) || {}));
+    if (open.has(id)) row.insertAdjacentHTML('beforeend', detailAndForm(sessionOnScreen(id), store.entry(id) || {}));
   });
 
   // Debounced per field, not globally — a shared timer would drop every edit
@@ -248,6 +321,58 @@ function wire(container) {
     const f = ev.target.closest('[data-f]');
     const row = f && f.closest('.session');
     if (row) save(row.dataset.session, f.dataset.f, f.value);
+  });
+
+  on(container, 'click', '[data-act="move"]', (ev, btn) => {
+    const row = btn.closest('.session');
+    const id = row.dataset.session;
+    const day = btn.dataset.day;
+    const session = findSession(id);
+    if (!session || day === session.day) return;
+    const planned = session.plannedDay || session.day;
+    if (day === planned) store.resetSessionDay(id);
+    else if (session.extra) store.updateExtra(id, { day });
+    else store.moveSession(id, day);
+    render(container);
+  });
+
+  on(container, 'click', '[data-act="reset-day"]', (ev, btn) => {
+    store.resetSessionDay(btn.closest('.session').dataset.session);
+    render(container);
+  });
+
+  on(container, 'click', '[data-act="delete-extra"]', (ev, btn) => {
+    const id = btn.closest('.session').dataset.session;
+    if (!confirm('Delete this session and anything logged against it?')) return;
+    open.delete(id);
+    store.removeExtra(id);
+    render(container);
+  });
+
+  on(container, 'click', '[data-act="add-open"]', () => { adding = true; render(container); });
+  on(container, 'click', '[data-act="add-cancel"]', () => { adding = false; draftDay = null; render(container); });
+
+  on(container, 'click', '[data-act="draft-day"]', (ev, btn) => {
+    draftDay = btn.dataset.day;
+    qsa('[data-act="draft-day"]', container).forEach(b =>
+      b.setAttribute('aria-pressed', String(b.dataset.day === draftDay)));
+  });
+
+  on(container, 'click', '[data-act="add-save"]', () => {
+    const week = getWeek(weekNumber);
+    const type = qs('#add-type', container).value;
+    const title = qs('#add-title', container).value.trim() || TYPE_LABEL[type];
+    const mins = Number(qs('#add-mins', container).value) || undefined;
+    const day = qsa('[data-act="draft-day"]', container).find(b => b.getAttribute('aria-pressed') === 'true');
+    store.addExtra({
+      weekNumber: week.number,
+      day: day ? day.dataset.day : 'Mon',
+      type, title, targetMinutes: mins
+    });
+    adding = false;
+    draftDay = null;
+    render(container);
+    toast('Session added');
   });
 
   // One handler for RPE, choice chips and toggles: tapping the active value
@@ -281,7 +406,7 @@ export function onLog(reason) {
   if (bar) bar.style.width = `${Math.round(stats.ratio * 100)}%`;
 
   qsa('.session', root).forEach(row => {
-    const session = sessionById(row.dataset.session);
+    const session = sessionOnScreen(row.dataset.session);
     if (!session) return;
     const e = store.entry(row.dataset.session) || {};
     row.classList.toggle('done', !!e.completed);

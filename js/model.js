@@ -50,10 +50,35 @@ export function currentWeekNumber(today = todayISO()) {
   return weeks[weeks.length - 1].number;
 }
 
+/**
+ * The week as it actually stands: the coach's sessions with any of your moves
+ * applied, plus any sessions you have added yourself. Everything downstream —
+ * the day list, the week count, the vertical — reads this rather than
+ * week.sessions, so a moved session moves everywhere at once.
+ */
+export function sessionsOf(week, log = store.state) {
+  const planned = week.sessions.map(s => {
+    const day = (log.adjustments[s.id] || {}).day;
+    return day && day !== s.day ? Object.assign({}, s, { day, plannedDay: s.day }) : s;
+  });
+  const extras = Object.values(log.extras || {})
+    .filter(x => x && !x.deleted && x.weekNumber === week.number)
+    .map(x => Object.assign({ critical: false, detail: '' }, x, { extra: true }));
+  return planned.concat(extras);
+}
+
+/** A session by id, whether it came from the plan or you added it. */
+export function findSession(id, log = store.state) {
+  const hit = byId.sessions.get(id);
+  if (hit) return hit.session;
+  const x = (log.extras || {})[id];
+  return x && !x.deleted ? Object.assign({ extra: true }, x) : null;
+}
+
 /** Sessions of a week grouped by day, in Mon–Sun order, skipping empty days. */
 export function daysOf(week) {
   const groups = new Map();
-  for (const s of week.sessions) {
+  for (const s of sessionsOf(week)) {
     if (!groups.has(s.day)) groups.set(s.day, []);
     groups.get(s.day).push(s);
   }
@@ -71,7 +96,7 @@ const counts = s => s.type !== 'rest' && !s.optional;
 
 export function weekStats(week, log = store.state) {
   let done = 0, total = 0, gain = 0, minutes = 0, distance = 0;
-  for (const s of week.sessions) {
+  for (const s of sessionsOf(week, log)) {
     if (counts(s)) total++;
     const e = log.entries[s.id];
     if (!e) continue;
@@ -114,9 +139,9 @@ export function evaluateAchievements(log = store.state) {
   const vert = totalVertical(log);
 
   const longestLong = Object.keys(log.entries).reduce((best, id) => {
-    const e = log.entries[id], s = byId.sessions.get(id);
+    const e = log.entries[id], s = findSession(id, log);
     if (!e || !e.completed || !s) return best;
-    const mins = num(e.durationMin) || num(s.session.targetMinutes);
+    const mins = num(e.durationMin) || num(s.targetMinutes);
     return Math.max(best, mins);
   }, 0);
 

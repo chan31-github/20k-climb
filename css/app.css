@@ -397,6 +397,16 @@ h1, h2, h3, h4 { margin: 0; font-weight: 650; line-height: 1.25; letter-spacing:
 }
 .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 
+/* Seven day chips have to fit a 375px screen and still take a thumb. */
+.chip-row.days { gap: 4px; }
+.chip.day { flex: 1 1 0; min-width: 0; padding: 0 4px; font-size: 13px; }
+
+.adjust { border-top: 1px solid var(--line); padding: 12px; background: var(--bg-sunken); }
+.adjust-label { font-size: 11px; font-weight: 650; letter-spacing: .05em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px; }
+.btn.small { min-height: 38px; padding: 0 12px; font-size: 13px; flex: 0 1 auto; }
+.add-card { margin-top: 14px; border-style: dashed; }
+.session-meta .added { color: var(--accent-text); }
+
 /* ---------- Full plan ---------- */
 
 .phase-head { margin: 20px 0 10px; }

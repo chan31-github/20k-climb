@@ -1,13 +1,15 @@
 // The activity log: localStorage-backed, versioned, and mergeable per entry.
 
 export const LOG_KEY = 'lantau-log-v1';
-export const SCHEMA_VERSION = 2;
+export const SCHEMA_VERSION = 3;
 
 function blank() {
   return {
     schemaVersion: SCHEMA_VERSION,
     lastExportedAt: null,
     entries: {},              // sessionId -> { completed, completedDate, durationMin, distanceKm, gainM, rpe, notes, updatedAt }
+    adjustments: {},          // sessionId -> { day, updatedAt } — day null means "back where the plan put it"
+    extras: {},               // extraId   -> { id, weekNumber, day, type, title, targetMinutes, deleted, updatedAt }
     achievements: {},         // achievementId -> "YYYY-MM-DD"
     achievementsMeta: {},     // achievementId -> updatedAt (kept apart so `achievements` stays human-readable)
     races: {},                // raceId -> { splits: { index: "HH:MM" }, updatedAt }
@@ -54,6 +56,8 @@ function migrate(raw) {
   if (from < 2) s.entries = renameEntries(s.entries, RENAMED_V2);
   s.schemaVersion = SCHEMA_VERSION;
   s.entries = s.entries || {};
+  s.adjustments = s.adjustments || {};
+  s.extras = s.extras || {};
   s.achievements = s.achievements || {};
   s.achievementsMeta = s.achievementsMeta || {};
   s.races = s.races || {};
@@ -134,6 +138,60 @@ export const store = {
     return !!state.entries[id].completed;
   },
 
+  // --- Moving a session, and adding one of your own ------------------------
+  //
+  // Both live in the log rather than in plan.json: the plan is what the coach
+  // wrote and stays read-only, these are your adjustments to it, and keeping
+  // them here means they sync between devices like everything else.
+
+  moveSession(id, day) {
+    state.adjustments[id] = { day, updatedAt: now() };
+    commit('adjust');
+  },
+
+  /** Tombstoned rather than deleted, so the reset survives a sync. */
+  resetSessionDay(id) {
+    state.adjustments[id] = { day: null, updatedAt: now() };
+    commit('adjust');
+  },
+
+  extrasFor(weekNumber) {
+    return Object.values(state.extras)
+      .filter(x => x && !x.deleted && x.weekNumber === weekNumber);
+  },
+
+  extra(id) {
+    const x = state.extras[id];
+    return x && !x.deleted ? x : null;
+  },
+
+  addExtra({ weekNumber, day, type, title, targetMinutes }) {
+    const id = `x${weekNumber}-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`;
+    state.extras[id] = {
+      id, weekNumber, day, type, title,
+      targetMinutes: targetMinutes || undefined,
+      updatedAt: now()
+    };
+    commit('extra');
+    return id;
+  },
+
+  updateExtra(id, patch) {
+    const x = state.extras[id];
+    if (!x || x.deleted) return;
+    state.extras[id] = Object.assign({}, x, patch, { updatedAt: now() });
+    commit('extra');
+  },
+
+  /** Removes the session and whatever was logged against it — they go together. */
+  removeExtra(id) {
+    const x = state.extras[id];
+    if (!x) return;
+    state.extras[id] = { id, weekNumber: x.weekNumber, deleted: true, updatedAt: now() };
+    delete state.entries[id];
+    commit('extra');
+  },
+
   achievement(id) { return state.achievements[id] || null; },
 
   setAchievement(id, dateISO) {
@@ -192,6 +250,15 @@ export function mergeLogs(a, b) {
 
   for (const id of new Set([...Object.keys(A.entries), ...Object.keys(B.entries)])) {
     out.entries[id] = newer(A.entries[id], B.entries[id]);
+  }
+
+  // Moves and added sessions reconcile per key like entries do, and their
+  // tombstones carry a timestamp so a delete beats an older edit.
+  for (const id of new Set([...Object.keys(A.adjustments), ...Object.keys(B.adjustments)])) {
+    out.adjustments[id] = newer(A.adjustments[id], B.adjustments[id]);
+  }
+  for (const id of new Set([...Object.keys(A.extras), ...Object.keys(B.extras)])) {
+    out.extras[id] = newer(A.extras[id], B.extras[id]);
   }
 
   for (const id of new Set([...Object.keys(A.achievements), ...Object.keys(B.achievements),
