@@ -298,10 +298,9 @@ function wire(container) {
     if (open.has(id)) open.delete(id); else open.add(id);
     row.classList.toggle('open', open.has(id));
     btn.setAttribute('aria-expanded', String(open.has(id)));
-    const form = row.querySelector('.logform');
-    const detail = row.querySelector('.session-detail');
-    if (form) form.remove();
-    if (detail) detail.remove();
+    // Clear everything the expanded state adds — not a fixed list of parts,
+    // which is how the Day footer got left behind on every collapse.
+    row.querySelectorAll(':scope > :not(.session-main)').forEach(el => el.remove());
     if (open.has(id)) row.insertAdjacentHTML('beforeend', detailAndForm(sessionOnScreen(id), store.entry(id) || {}));
   });
 
