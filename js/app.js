@@ -5,6 +5,7 @@ import { store } from './store.js';
 import { applyTheme } from './theme.js';
 import { loadPlan, evaluateAchievements } from './model.js';
 import * as sync from './sync.js';
+import { updateAvailable } from './update.js';
 
 import * as week from './views/week.js';
 import * as fullplan from './views/fullplan.js';
@@ -109,6 +110,14 @@ async function start() {
     // cache, or a new version can go unnoticed for as long as it stays fresh.
     navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
       .catch(err => console.warn('SW registration failed', err));
+  }
+
+  // A quiet look at GitHub on launch: if a newer release is published, say so
+  // once. Nothing blocks on it, and offline it simply finds nothing.
+  if (navigator.onLine) {
+    updateAvailable().then(live => {
+      if (live) toast(`v${live} is available — Settings › Update now`, 6000);
+    });
   }
 
   // Flush any pending sync before the app goes away.

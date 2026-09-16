@@ -1,14 +1,16 @@
 /* Offline shell. Cache-first: once installed the app makes no network
    requests at all, which is the point — it gets opened on Lantau. */
 
-// Bump this whenever app code changes — a cache-first worker keeps serving
-// the installed copy until the version (and therefore this file) changes.
-// data/plan.json is the exception: it revalidates on its own, so plan edits
-// need no bump.
-const VERSION = 'lantau-v8';
+// The cache is named after the release in version.js. Bump that whenever app
+// code changes — a cache-first worker keeps serving the installed copy until
+// this file changes, and importing the version is what changes it.
+// data/plan.json is the exception: it revalidates on its own.
+importScripts('version.js');
+const VERSION = 'lantau-' + self.APP_VERSION;
 const SHELL = [
   './',
   'index.html',
+  'version.js',
   'manifest.json',
   'css/app.css',
   'data/plan.json',
@@ -16,6 +18,7 @@ const SHELL = [
   'js/dates.js',
   'js/dom.js',
   'js/fields.js',
+  'js/update.js',
   'js/md.js',
   'js/model.js',
   'js/store.js',
@@ -59,6 +62,7 @@ self.addEventListener('fetch', event => {
 
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;   // never touch api.github.com
+  if (req.cache === 'no-store') return;              // the update check wants the network, not us
 
   event.respondWith((async () => {
     const cached = await caches.match(req, { ignoreSearch: true });

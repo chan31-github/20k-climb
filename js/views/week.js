@@ -8,6 +8,7 @@ import {
   currentWeekNumber, firstWeek, lastWeek, TYPE_ICON, TYPE_LABEL
 } from '../model.js';
 import { FIELDS, fieldsFor, coerce, summaryOf } from '../fields.js';
+import { current } from '../update.js';
 import { todayISO, formatShort, formatRange, daysBetween, DAYS, DAY_LONG, hhmm } from '../dates.js';
 
 const open = new Set();          // session ids with the log form expanded
@@ -114,10 +115,10 @@ function fieldControl(session, entry, key) {
   return '';
 }
 
-function dayChips(field, current) {
+function dayChips(field, selected) {
   return `<div class="chip-row days" role="group" aria-label="Day">
     ${DAYS.map(d => `<button type="button" class="chip day" data-act="${field}" data-day="${d}"
-        aria-pressed="${d === current}">${d}</button>`).join('')}
+        aria-pressed="${d === selected}">${d}</button>`).join('')}
   </div>`;
 }
 
@@ -259,7 +260,8 @@ ${adding ? addForm(week, today) : `
 
 <p class="small muted center" style="margin-top:16px">
   Tap the box to tick a session. Tap the row for detail, to log metrics, or to move it to another day.
-</p>`;
+</p>
+<p class="small center version-line"><a href="#/settings">v${esc(current())}</a></p>`;
 
   if (!root.dataset.wired) {
     wire(root);

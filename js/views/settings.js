@@ -6,6 +6,7 @@ import { plan, totals } from '../model.js';
 import { todayISO } from '../dates.js';
 import * as sync from '../sync.js';
 import { applyTheme } from '../theme.js';
+import { current, released, latest } from '../update.js';
 
 let root = null;
 
@@ -82,6 +83,18 @@ ${store.error ? `<div class="alert"><b>Storage problem.</b> ${esc(store.error)}<
 
 <div class="card">
   <div class="setting-row">
+    <h3>Version <span class="badge" style="vertical-align:middle">v${esc(current())}</span></h3>
+    <p>This copy is release <b>v${esc(current())}</b>${released() ? `, published ${esc(released())}` : ''}.
+       Check whether GitHub has something newer.</p>
+    <div class="btn-row">
+      <button class="btn" type="button" data-act="check-update">Check for update</button>
+    </div>
+    <p id="update-result" class="small" style="margin:10px 0 0" hidden></p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="setting-row">
     <h3>Reset</h3>
     <p>Clears every tick, metric and achievement on this device. Export first.</p>
     <button class="btn danger block" type="button" data-act="reset">Clear my log</button>
@@ -94,7 +107,7 @@ ${store.error ? `<div class="alert"><b>Storage problem.</b> ${esc(store.error)}<
 </div>
 
 <p class="small muted center">
-  ${esc(plan.meta.title)} · ${esc(plan.meta.startDate)} → ${esc(plan.meta.endDate)}<br>
+  ${esc(plan.meta.title)} · ${esc(plan.meta.startDate)} → ${esc(plan.meta.endDate)} · v${esc(current())}<br>
   Plan content lives in <code>data/plan.json</code>.
 </p>`;
 
@@ -172,6 +185,23 @@ function wire() {
     store.replace({}, 'import');
     toast('Log cleared');
     render(root);
+  });
+
+  on(root, 'click', '[data-act="check-update"]', async (ev, btn) => {
+    const out = qs('#update-result', root);
+    btn.disabled = true;
+    out.hidden = false;
+    out.textContent = 'Checking…';
+    const live = await latest();
+    btn.disabled = false;
+    if (!live) {
+      out.innerHTML = 'Could not reach GitHub — are you offline?';
+    } else if (live === current()) {
+      out.innerHTML = `<b style="color:var(--good)">You're on the latest release.</b> v${esc(live)} is what GitHub is serving.`;
+    } else {
+      out.innerHTML = `<b style="color:var(--accent-text)">v${esc(live)} is available</b> — you have v${esc(current())}. ` +
+        '<button class="btn small primary" type="button" data-act="refresh-cache" style="margin-left:6px">Update now</button>';
+    }
   });
 
   on(root, 'click', '[data-act="refresh-cache"]', async () => {

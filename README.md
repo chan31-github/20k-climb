@@ -67,10 +67,17 @@ the long run moving from Saturday to Sunday kept its history.
 *next* launch after your device has fetched it. To force it immediately: Settings →
 **Update from GitHub**.
 
-If you ever change the **app code** rather than the plan, bump `VERSION` in `sw.js`
-(`lantau-v7` → `lantau-v8`). A cache-first service worker keeps serving the copy it
-installed until that string changes. `data/plan.json` is deliberately exempt — it
-revalidates on its own, so plan edits never need a bump.
+If you ever change the **app code** rather than the plan, bump `APP_VERSION` (and the
+date) in **`version.js`**. That one number is shown at the foot of the Week tab and in
+Settings, and it names the offline cache — so what's on screen is always what was
+installed. A cache-first service worker keeps serving the copy it installed until that
+number changes. `data/plan.json` is deliberately exempt — it revalidates on its own, so
+plan edits never need a bump.
+
+**Am I on the latest?** The version is at the bottom of the Week tab. Settings → **Check
+for update** compares it with what GitHub is serving right now (it reads past the offline
+cache), and offers **Update now** if there's something newer. The app also takes a quiet
+look on launch and mentions a newer release if it finds one.
 
 ---
 
@@ -162,6 +169,7 @@ empty. No code change needed.
 
 ```
 index.html          app shell
+version.js          THE VERSION — bump per release
 manifest.json       PWA manifest (home-screen install)
 sw.js               service worker — offline cache
 css/app.css         all styles, custom properties, dark + light
@@ -173,6 +181,7 @@ js/model.js         everything derived from plan + log
 js/dates.js         Hong Kong dates, week/day resolution
 js/md.js            tiny markdown renderer
 js/dom.js           small DOM helpers
+js/update.js        which version this is, and whether GitHub has a newer one
 js/fields.js        which metrics each session type asks for
 js/theme.js         dark/light
 js/views/*.js       one file per tab

@@ -18,11 +18,11 @@ export function on(root, type, sel, handler) {
 }
 
 let toastTimer;
-export function toast(message) {
+export function toast(message, ms = 2200) {
   const el = qs('#toast');
   if (!el) return;
   el.textContent = message;
   el.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+  toastTimer = setTimeout(() => el.classList.remove('show'), ms);
 }
