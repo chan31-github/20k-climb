@@ -43,7 +43,7 @@
       "role": "Dress rehearsal",
       "targetFinish": "15:10",
       "sessionId": "w10-sat-race",
-      "notesMd": "You have **11 hours** for 30km and 1,540m. You should finish in around **6h30–7h**. There is no cutoff pressure whatsoever, which is exactly why it's the perfect laboratory.\n\n**This is not a race. Repeat it until you believe it.** The purpose is to rehearse TL50 under real conditions three weeks out, and to find out what breaks while it still costs you nothing.\n\nRehearse everything:\n- The exact kit you'll wear at TL50\n- Poles, from the start line to the finish line\n- The full fuelling plan on the timer — this is your last big gut test\n- Race-morning breakfast at the same time you'll eat it on 14 November\n- Chat Pace throughout. If you can't hold a conversation, you're going too hard.\n\n**Afterwards, write down three things:** what hurt, what your stomach did, and what you'd change. That list becomes your TL50 fix-list.",
+      "notesMd": "You have **11 hours** for 30km and 1,540m. You should finish in around **6h30–7h**. There is no cutoff pressure whatsoever, which is exactly why it's the perfect laboratory.\n\n**This is not a race. Repeat it until you believe it.** The purpose is to rehearse TL50 under real conditions three weeks out, and to find out what breaks while it still costs you nothing.\n\nRehearse everything:\n- The exact kit you'll wear at TL50\n- Hands-free fuelling — the reason you're not using poles. Prove it works\n- The full fuelling plan on the timer — this is your last big gut test\n- Race-morning breakfast at the same time you'll eat it on 14 November\n- Chat Pace throughout. If you can't hold a conversation, you're going too hard.\n\n**Afterwards, write down three things:** what hurt, what your stomach did, and what you'd change. That list becomes your TL50 fix-list.",
       "checkpoints": [
         {
           "name": "Start, Tai Tam",
@@ -196,7 +196,7 @@
         6
       ],
       "dates": "31 August – 27 September",
-      "blurb": "Volume climbs, everything stays easy. Poles come out. The gut goes to school."
+      "blurb": "Volume climbs, everything stays easy. Descent loading begins. The gut goes to school."
     },
     {
       "id": "p3",
@@ -257,7 +257,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true,
           "fields": [
             "durationMin",
@@ -290,7 +290,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true,
           "fields": [
             "durationMin",
@@ -316,7 +316,7 @@
           "title": "The Long One: 1h15",
           "targetMinutes": 75,
           "targetGainM": 350,
-          "detail": "Re-entry, nothing more. Easy throughout on trails, poles optional. Don't chase the vertical — if the trail gives you 250m, that's fine. Start 06:30–07:00 to rehearse the race alarm and breakfast. Success: you finished it and you're not sore on Monday.",
+          "detail": "Re-entry, nothing more. Easy throughout on trails, unpaved where possible. Don't chase the vertical — if the trail gives you 250m, that's fine. Start 06:30–07:00 to rehearse the race alarm and breakfast. Success: you finished it and you're not sore on Monday.",
           "critical": true
         }
       ]
@@ -355,7 +355,7 @@
       "startDate": "2026-08-31",
       "endDate": "2026-09-06",
       "phaseId": "p2",
-      "note": "Poles come out this week and stay out — every Long One from here. First fuelling rehearsal: **30g carbs/hour on a 20-minute timer**, two foods only.\n\n🎯 Crew deadline is **6 September** — the end of this week.",
+      "note": "Descent loading begins — the Drop now has a target in metres *down*, not up. First fuelling rehearsal on Sunday: **30g carbs/hour on a 20-minute timer**, two foods only.\n\n🎯 Crew deadline is **6 September** — the end of this week.",
       "isRecovery": false,
       "isPeak": false,
       "sessions": [
@@ -365,7 +365,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true,
           "fields": [
             "durationMin",
@@ -398,7 +398,8 @@
           "type": "drop",
           "title": "Drop: 5 × descent reps",
           "targetMinutes": 45,
-          "detail": "Jog up easy, come down with control and quick feet. Shorten the stride, raise the cadence, land under your centre of mass.",
+          "targetDescent": "250–300",
+          "detail": "Jog up easy, come down with control and quick feet. Shorten the stride, raise the cadence, land under your centre of mass. The climb is transport — hike it easy. Only the descending is the stimulus, so log descent metres.",
           "critical": false
         },
         {
@@ -407,7 +408,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true,
           "fields": [
             "durationMin",
@@ -430,10 +431,10 @@
           "id": "w3-sun-long",
           "day": "Sun",
           "type": "long",
-          "title": "The Long One: 1h45, poles",
+          "title": "The Long One: 1h45",
           "targetMinutes": 105,
           "targetGainM": 450,
-          "detail": "First rehearsal of the system. Poles for the first time — expect it to feel clumsy. First fuelling test at 30g/hr on the timer, two foods only, nothing exotic. Success: you ate on schedule five times and your stomach was fine.",
+          "detail": "First rehearsal of the system. First fuelling test at 30g/hr on the timer, two foods only, nothing exotic. Success: you ate on schedule five times and your stomach was fine.",
           "critical": true
         }
       ]
@@ -453,7 +454,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true,
           "fields": [
             "durationMin",
@@ -486,7 +487,8 @@
           "type": "drop",
           "title": "Drop: 6 × descents",
           "targetMinutes": 45,
-          "detail": "Quads absorbing load. Control speed with foot placement, not by braking.",
+          "targetDescent": "250–300",
+          "detail": "Quads absorbing load. Control speed with foot placement, not by braking. The climb is transport — hike it easy. Only the descending is the stimulus, so log descent metres.",
           "critical": false
         },
         {
@@ -495,7 +497,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true,
           "fields": [
             "durationMin",
@@ -518,7 +520,7 @@
           "id": "w4-sun-long",
           "day": "Sun",
           "type": "long",
-          "title": "The Long One: 2h15, poles",
+          "title": "The Long One: 2h15",
           "targetMinutes": 135,
           "targetGainM": 650,
           "detail": "Extend, and start the hike discipline. 30–40g/hr. Deliberately hike every climb above 12% even where you could run — watch your heart rate on the climbs, it should stay conversational. 🏆 First Long One past two hours.",
@@ -541,7 +543,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true,
           "fields": [
             "durationMin",
@@ -574,7 +576,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true,
           "fields": [
             "durationMin",
@@ -607,7 +609,7 @@
           "id": "w5-sun-long",
           "day": "Sun",
           "type": "long",
-          "title": "The Long One: 1h30 easy, poles",
+          "title": "The Long One: 1h30 easy",
           "targetMinutes": 90,
           "targetGainM": 400,
           "detail": "Recovery — genuinely easy. Keep the fuelling timer running anyway: the habit matters more than the volume.",
@@ -620,7 +622,7 @@
       "startDate": "2026-09-21",
       "endDate": "2026-09-27",
       "phaseId": "p2",
-      "note": "Poles on one weekday Grind this week. Add **single-leg hop and stick** to the ankle work from now on. Kit steps up to **Level 2**: 1.5L vest, two or three food types, salt, headtorch.\n\n*Vertical banked: ~5,800m — you've passed Kinabalu* 🏔️",
+      "note": "Add **single-leg hop and stick** to the ankle work from now on. From this week, bias the Sunday route toward **descent-heavy terrain** and finish on downhill rather than flat — 600m dropped steeply trains you far more than 600m spread over gentle grades. Kit steps up to **Level 2**: 1.5L vest, two or three food types, salt, headtorch.\n\n*Vertical banked: ~5,800m — you've passed Kinabalu* 🏔️",
       "isRecovery": false,
       "isPeak": false,
       "sessions": [
@@ -630,7 +632,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -648,7 +650,7 @@
           "type": "grind",
           "title": "Grind: 12 × 90s, or one sustained 25-min climb",
           "targetMinutes": 50,
-          "detail": "Take the poles on this one — first weekday session with them.",
+          "detail": "Stairs or hill repeats. Effort, not pace.",
           "critical": false
         },
         {
@@ -657,7 +659,8 @@
           "type": "drop",
           "title": "Drop: 6 × descents, longer",
           "targetMinutes": 50,
-          "detail": "Longer reps. This is the session that decides your race.",
+          "targetDescent": "350–400",
+          "detail": "Longer reps. This is the session that decides your race. The climb is transport — hike it easy. Only the descending is the stimulus, so log descent metres.",
           "critical": false
         },
         {
@@ -666,7 +669,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -683,10 +686,10 @@
           "id": "w6-sun-long",
           "day": "Sun",
           "type": "long",
-          "title": "The Long One: 3h00, poles",
+          "title": "The Long One: 3h00",
           "targetMinutes": 180,
           "targetGainM": 950,
-          "detail": "First long day, and first darkness. 40–50g/hr, and introduce a savoury option here — rice ball or salted potatoes. Headtorch in the pack: start before dawn or finish after dark. First three-minute aid station drill: stop, refill, eat, move. Success: three hours, savoury food tolerated, fe speed logged. 🏆 Night Shift.",
+          "detail": "First long day, and first darkness. 40–50g/hr, and introduce a savoury option here — rice ball or salted potatoes. Headtorch in the pack: start before dawn or finish after dark. First three-minute aid station drill: stop, refill, eat, move. Descent-heavy route, finish on downhill. Success: three hours, savoury food tolerated, fe speed logged. 🏆 Night Shift.",
           "critical": true
         }
       ]
@@ -706,7 +709,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -733,7 +736,8 @@
           "type": "drop",
           "title": "Drop",
           "targetMinutes": 45,
-          "detail": "Descent reps. Quick feet, quads working.",
+          "targetDescent": "450–500",
+          "detail": "Descent reps. Quick feet, quads working. The climb is transport — hike it easy. Only the descending is the stimulus, so log descent metres.",
           "critical": false
         },
         {
@@ -742,7 +746,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -782,7 +786,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -809,7 +813,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -839,7 +843,7 @@
           "title": "The Long One: 2h00 easy",
           "targetMinutes": 120,
           "targetGainM": 500,
-          "detail": "Recovery before the big one. Easy, poles, timer running.",
+          "detail": "Recovery before the big one. Easy, timer running.",
           "critical": true
         }
       ]
@@ -859,7 +863,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -886,7 +890,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -906,7 +910,7 @@
           "title": "The Long One: 5h30 — RECCE #2, the key session",
           "targetMinutes": 330,
           "targetGainM": 1430,
-          "detail": "Go past the point where you have twice failed. The actual first half of TL50: Mui Wo → Ham Tin → Chi Ma Wan → back to Mui Wo, 26.3km and 1,427m. Full TL50 mandatory kit at race weight, 65–75g/hr on the timer, poles throughout, exact race breakfast. Target 6.3 km/h fe — no faster. Finish at Mui Wo, then stand there and register that on race day you'd still have 18km and 1,081m to go. Success: 5h30 done, eating normally at the end, no nausea.",
+          "detail": "Go past the point where you have twice failed. The actual first half of TL50: Mui Wo → Ham Tin → Chi Ma Wan → back to Mui Wo, 26.3km and 1,427m. Full TL50 mandatory kit at race weight, 65–75g/hr on the timer, exact race breakfast. Target 6.3 km/h fe — no faster. Finish at Mui Wo, then stand there and register that on race day you'd still have 18km and 1,081m to go. Success: 5h30 done, eating normally at the end, no nausea.",
           "critical": true
         }
       ]
@@ -916,7 +920,7 @@
       "startDate": "2026-10-19",
       "endDate": "2026-10-25",
       "phaseId": "p4",
-      "note": "🥉 **RCWT week — mini-taper.** Thu/Fri off, legs up, eat. Poles at RCWT start to finish. Fuelling at **65g/hr** on the timer: full dress rehearsal, and the **last day anything new is allowed**.",
+      "note": "🥉 **RCWT week — mini-taper.** Thu/Fri off, legs up, eat. Rehearse **hands-free fuelling** — the reason you're not using poles — and prove it works. Fuelling at **65g/hr** on the timer: full dress rehearsal, and the **last day anything new is allowed**.",
       "isRecovery": false,
       "isPeak": false,
       "sessions": [
@@ -926,7 +930,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "Race week — keep it gentle. From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "Race week — keep it gentle. From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": false
         },
         {
@@ -970,7 +974,7 @@
           "title": "🥉 RCWT Explorer 30k — 08:30",
           "targetMinutes": 400,
           "targetGainM": 1540,
-          "detail": "30km / 1,540m+, 11h limit. Target finish 15:10 (6h40), which is 4.1 km/h fe. This is not a race — it's a laboratory. Chat Pace throughout, 65g/hr on the timer from 30 minutes in, poles start to finish. Afterwards write down three things: what hurt, what your stomach did, what you'd change.",
+          "detail": "30km / 1,540m+, 11h limit. Target finish 15:10 (6h40), which is 4.1 km/h fe. This is not a race — it's a laboratory. Chat Pace throughout, 65g/hr on the timer from 30 minutes in, hands-free fuelling from start to finish. Afterwards write down three things: what hurt, what your stomach did, what you'd change.",
           "critical": true
         },
         {
@@ -988,7 +992,7 @@
       "startDate": "2026-10-26",
       "endDate": "2026-11-01",
       "phaseId": "p5",
-      "note": "📉 **Recovery.** RCWT was your last long effort of consequence. Absorb it. **No Drop session this week — the legs have had enough descending.** The pole decision is now locked, either way.",
+      "note": "📉 **Recovery.** RCWT was your last long effort of consequence. Absorb it. **No Drop session this week — the legs have had enough descending.**",
       "isRecovery": true,
       "isPeak": false,
       "sessions": [
@@ -998,7 +1002,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -1025,7 +1029,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -1055,7 +1059,7 @@
           "title": "The Long One: 1h30 easy trails",
           "targetMinutes": 90,
           "targetGainM": 400,
-          "detail": "Recovery from RCWT. Easy, short, poles optional. Let the legs come back.",
+          "detail": "Recovery from RCWT. Easy, short, flat. Let the quads come back.",
           "critical": true
         }
       ]
@@ -1075,7 +1079,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -1102,7 +1106,8 @@
           "type": "drop",
           "title": "Drop, short",
           "targetMinutes": 35,
-          "detail": "Short. Quick feet, no hammering.",
+          "targetDescent": "500–600",
+          "detail": "Short. Quick feet, no hammering. The climb is transport — hike it easy. Only the descending is the stimulus, so log descent metres.",
           "critical": false
         },
         {
@@ -1111,7 +1116,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -1141,7 +1146,7 @@
       "startDate": "2026-11-09",
       "endDate": "2026-11-15",
       "phaseId": "p5",
-      "note": "🥇 **TAPER & TL50.** Everything in this plan has served Saturday. Thu/Fri off — kit check, sleep. No rowing this week. Low fibre for 24 hours before the start.",
+      "note": "🥇 **TAPER & TL50.** Everything in this plan has served Saturday. Thu/Fri off — kit check, sleep. No rowing this week. Low fibre for 24 hours before the start. Decide on the **insurance option** — poles stowed but unused — before race week, not on the morning.",
       "isRecovery": false,
       "isPeak": false,
       "sessions": [
@@ -1151,7 +1156,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "Race week — keep it gentle. From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "Race week — keep it gentle. From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": false
         },
         {
@@ -1177,7 +1182,7 @@
           "day": "Thu",
           "type": "rest",
           "title": "Off. Kit check.",
-          "detail": "Lay it all out. Charge the headtorch. Count the carbs: ~700g plus 20% reserve.",
+          "detail": "Lay it all out. Charge the headtorch. Count the carbs: ~700g plus 20% reserve, and weigh what you're carrying.",
           "critical": false
         },
         {
@@ -1223,7 +1228,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "Gentle — skip anything that still hurts. From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "Gentle — skip anything that still hurts. From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": false
         },
         {
@@ -1241,7 +1246,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "Gentle. From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "Gentle. From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": false
         },
         {
@@ -1291,7 +1296,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -1318,7 +1323,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": true
         },
         {
@@ -1358,7 +1363,7 @@
           "type": "evening",
           "title": "Ankle Church + Strength",
           "targetMinutes": 30,
-          "detail": "Last one of the plan — keep it gentle. From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the core and upper-body block, paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "detail": "Last one of the plan — keep it gentle. From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
           "critical": false
         },
         {
@@ -1405,19 +1410,25 @@
       "id": "week",
       "title": "Your Week",
       "icon": "calendar",
-      "bodyMd": "Four running days, two strength evenings, two genuinely free days. **Saturday is free by design** — family chaos costs you nothing, and Friday plus Saturday leave you fresh for Sunday. Roughly 4–6 hours, touching 7 in Week 9.\n\n### The default template\n\n| Day | Lunchtime | Evening |\n|---|---|---|\n| **Sun** | 🥾 **The Long One** — early, before the house wakes | — |\n| **Mon** | — *(no running)* | 🦶 Ankle Church + 💪 Strength, ~30 min |\n| **Tue** | 🐌 The Shuffle | — |\n| **Wed** | 🪜 The Grind | — |\n| **Thu** | ⛰️ The Drop | 🦶 Ankle Church + 💪 Strength, ~30 min |\n| **Fri** | — | Optional 🚣 easy row *(light weeks only)* |\n| **Sat** | Free. 🧘 Yoga if the day allows, otherwise nothing | — |\n\n**Monday is a deliberate rest day from running.** It sits directly after the long run, when soreness peaks and connective tissue is most vulnerable — and after three years detrained your tendons lag well behind your engine. It's also your hardest day for time, and a plan with no protected day is one you resent by October.\n\nDays are movable within the week. What must not move: the Sunday long run, and both strength blocks.\n\n### The sessions\n\n**🪜 The Grind** *(lunchtime, 40–50 min)* — Stairs and hill repeats. Your weekday time slot is too short to build volume but perfect for building vertical, which is exactly what these races need. Climb hard, descend controlled, repeat. Pace is meaningless; effort is everything.\n\n**🐌 The Shuffle** *(lunchtime, 40–50 min)* — Easy aerobic running. Flat or rolling. This is the boring one, and it is the one that builds the engine. It should feel almost embarrassingly easy. Capped at conversational effort, no exceptions.\n\n**⛰️ The Drop** *(lunchtime, 40–50 min)* — Descent work. Find a hill, jog up easy, come down with control and quick feet. This trains the quads to absorb 2,500m of downhill without falling apart at 30km. It is the single most neglected session in trail training and the one that decides your race.\n\n**🥾 The Long One** *(Sunday morning, early)* — The centrepiece. Start at 06:30 or 07:00 to rehearse race-morning logistics, get the fuelling timed, and beat the heat. Trails, poles, full kit, real food. Every one of them is spelled out in the Long Session Playbook.\n\n**🦶 Ankle Church + 💪 Strength** *(Monday and Thursday evenings, ~30 min, on top)* — Paired into one block so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.\n\n### Effort, not pace\n\nHong Kong in September makes pace numbers lie to you. Use the talk test:\n\n- **Chat Pace** — full sentences. This is TL50 race effort. Most of your training lives here.\n- **Steady** — short sentences only.\n- **Hard** — single words. You'll barely use this.\n\nYour progress metric isn't pace. It's your heart rate coming down for the same effort. Right now you're averaging 147–156bpm for modest work. Watch that drift downward over eight weeks — that's the engine being built."
+      "bodyMd": "Four running days, two strength evenings, two genuinely free days. **Saturday is free by design** — family chaos costs you nothing, and Friday plus Saturday leave you fresh for Sunday. Roughly 4–6 hours, touching 7 in Week 9.\n\n### The default template\n\n| Day | Lunchtime | Evening |\n|---|---|---|\n| **Sun** | 🥾 **The Long One** — early, before the house wakes | — |\n| **Mon** | — *(no running)* | 🦶 Ankle Church + 💪 Strength, ~30 min |\n| **Tue** | 🐌 The Shuffle | — |\n| **Wed** | 🪜 The Grind | — |\n| **Thu** | ⛰️ The Drop | 🦶 Ankle Church + 💪 Strength, ~30 min |\n| **Fri** | — | Optional 🚣 easy row *(light weeks only)* |\n| **Sat** | Free. 🧘 Yoga if the day allows, otherwise nothing | — |\n\n**Monday is a deliberate rest day from running.** It sits directly after the long run, when soreness peaks and connective tissue is most vulnerable — and after three years detrained your tendons lag well behind your engine. It's also your hardest day for time, and a plan with no protected day is one you resent by October.\n\nDays are movable within the week. What must not move: the Sunday long run, and both strength blocks.\n\n### The sessions\n\n**🪜 The Grind** *(lunchtime, 40–50 min)* — Stairs and hill repeats. Your weekday time slot is too short to build volume but perfect for building vertical, which is exactly what these races need. Climb hard, descend controlled, repeat. Pace is meaningless; effort is everything.\n\n**🐌 The Shuffle** *(lunchtime, 40–50 min)* — Easy aerobic running. Flat or rolling. This is the boring one, and it is the one that builds the engine. It should feel almost embarrassingly easy. Capped at conversational effort, no exceptions.\n\n**⛰️ The Drop** *(lunchtime, 40–50 min)* — Descent work. Find a hill, jog up easy, come down with control and quick feet. This trains the quads to absorb 2,500m of downhill without falling apart at 30km. It is the single most neglected session in trail training and the one that decides your race.\n\n**🥾 The Long One** *(Sunday morning, early)* — The centrepiece. Start at 06:30 or 07:00 to rehearse race-morning logistics, get the fuelling timed, and beat the heat. Trails, full kit, real food. Every one of them is spelled out in the Long Session Playbook.\n\n**🦶 Ankle Church + 💪 Strength** *(Monday and Thursday evenings, ~30 min, on top)* — Paired into one block so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.\n\n### Effort, not pace\n\nHong Kong in September makes pace numbers lie to you. Use the talk test:\n\n- **Chat Pace** — full sentences. This is TL50 race effort. Most of your training lives here.\n- **Steady** — short sentences only.\n- **Hard** — single words. You'll barely use this.\n\nYour progress metric isn't pace. It's your heart rate coming down for the same effort. Right now you're averaging 147–156bpm for modest work. Watch that drift downward over eight weeks — that's the engine being built."
     },
     {
       "id": "playbook",
       "title": "The Long Session Playbook",
       "icon": "boot",
-      "bodyMd": "The Long One is the session that decides your races. Each one has a job — the app carries it on the session itself, and this is the system behind them.\n\n### The metric that matters\n\n**flat-equivalent km = distance (km) + climb (m) ÷ 100**\n**fe speed = fe km ÷ hours**\n\n| Race | Requires |\n|---|---|\n| RCWT | 4.1 km/h fe |\n| **TransLantau50** | **6.3 km/h fe** |\n| Suthep 20 | 5.3 km/h fe |\n\nIt's the only number directly comparable to a cutoff, and it works across any terrain. **The app calculates it for you** — log duration, distance and climb on a long run and the fe speed appears on the row.\n\n**Targets are duration and vertical. Distance is whatever it turns out to be.** Chasing distance on Hong Kong trails leads you to flat ground, which is not what you're training for.\n\n⚠️ **Two of your three races are on Saturdays** — RCWT on 24 October and TL50 on 14 November. Training on Sundays doesn't change the physiology, but it does mean those two Saturdays need clearing with the family now, not in October.\n\n### Rules for every long session\n\n1. **Start at 06:30–07:00.** All three races start in the morning. Rehearse the alarm, the breakfast, the pre-dawn stomach.\n2. **Race breakfast, 2–2.5 hours before.** Same food every week. By November your gut should recognise it.\n3. **Poles from Week 3.** Every long session, no exceptions, until the decision is locked after RCWT.\n4. **Fuelling on a 20-minute timer from Week 3.** Eat on the beep, not by feel.\n5. **Hike everything above roughly 12% gradient — deliberately, even when you could run it.**\n6. **No stop longer than three minutes.** From Week 6, practise a timed \"aid station\" drill: stop, refill, eat, move.\n7. **Last 10 minutes on technical ground from Week 9.** Rolling an ankle when tired is a trainable skill.\n8. **Four lines in the log afterwards:** fe speed, what you ate and when, what your stomach did, any niggle.\n\n### The run/hike discipline\n\nThis is the skill that wins cutoff races, and it's counterintuitive enough that most people never practise it.\n\nYou are not trying to run TL50. You're trying to **hike the climbs efficiently and run everything runnable**, for eleven hours. Someone who runs the early climbs and walks the late flats finishes slower than someone who hikes every climb and runs every descent — and is far more likely to be sick at halfway, because high intensity shuts down gastric emptying.\n\n**Practise hiking when you feel strong enough to run.** That's the whole drill. It will feel wrong in September and it will save your race in November.\n\n**Power-hike technique:** short steps, high cadence, torso upright rather than bent, hands driving on your quads or your poles, breathing on a rhythm. It should feel like a distinct gear, not like giving up.\n\n**Descending technique** — you descend well, but detrained quads and a sprain history change the calculus. Shorten your stride, raise your cadence (your 133spm is low; aim to feel quicker rather than longer), land under your centre of mass rather than reaching ahead, and look three to four steps down the trail instead of at your feet. On technical ground, control speed with foot placement rather than by braking with your quads — braking is what destroys them by 30km.\n\n### The kit ladder\n\n**Level 1 — Weeks 1–5.** Small vest or handheld, 500ml–1L, phone, one food item. Poles from Week 3.\n\n**Level 2 — Weeks 6–8.** Vest with 1.5L capacity, two or three food types, salt, headtorch from Week 6, poles.\n\n**Level 3 — Week 9 onward.** **Full TL50 mandatory kit, at race weight, every single time.**\n\n☐ Pull the mandatory gear list from the TL50 race page and buy anything missing by the end of September. A loaded pack changes your climbing rate, your shoulders, your sweat rate and your centre of gravity on descents. Discovering that on 14 November is not a plan.\n\n### Vertical from long sessions\n\n| Weeks | From long sessions |\n|---|---|\n| 1–5 | ~2,350m |\n| 6–9 | ~4,130m |\n| 10–13 | ~5,350m |\n| 14–16 | ~2,200m |\n| **Total** | **~14,000m** |\n\nThe remaining ~6,000m of your 20,000m bank comes from weekday Grind sessions.\n\n### If a long session goes wrong\n\n**Ran out of time.** Cut the back end, keep the climbing. 2h with 800m beats 3h with 300m for these races.\n\n**Felt terrible from the start.** Convert it to a hike of the same duration. Time on feet is the point; running is just one way to accumulate it.\n\n**Stomach trouble.** Don't abandon the session — run the rescue protocol (drop effort, sip dilute liquid, salty food, resume at 30–40g/hr). Practising the recovery is worth more than a clean session.\n\n**Missed it entirely.** Try Saturday, or Monday morning if you can. If that's gone too, do not try to make it up midweek — take the shorter session and carry on. One missed long run costs you very little. Three consecutive ones cost you the race."
+      "bodyMd": "The Long One is the session that decides your races. Each one has a job — the app carries it on the session itself, and this is the system behind them.\n\n### The metric that matters\n\n**flat-equivalent km = distance (km) + climb (m) ÷ 100**\n**fe speed = fe km ÷ hours**\n\n| Race | Requires |\n|---|---|\n| RCWT | 4.1 km/h fe |\n| **TransLantau50** | **6.3 km/h fe** |\n| Suthep 20 | 5.3 km/h fe |\n\nIt's the only number directly comparable to a cutoff, and it works across any terrain. **The app calculates it for you** — log duration, distance and climb on a long run and the fe speed appears on the row.\n\n**Targets are duration and vertical. Distance is whatever it turns out to be.** Chasing distance on Hong Kong trails leads you to flat ground, which is not what you're training for.\n\n⚠️ **Two of your three races are on Saturdays** — RCWT on 24 October and TL50 on 14 November. Training on Sundays doesn't change the physiology, but it does mean those two Saturdays need clearing with the family now, not in October.\n\n### Rules for every long session\n\n1. **Start at 06:30–07:00.** All three races start in the morning. Rehearse the alarm, the breakfast, the pre-dawn stomach.\n2. **Race breakfast, 2–2.5 hours before.** Same food every week. By November your gut should recognise it.\n3. **No poles.** Your legs do all of it — bias routes toward descent-heavy terrain from Week 6, and finish long runs on downhill rather than flat.\n4. **Fuelling on a 20-minute timer from Week 3.** Eat on the beep, not by feel.\n5. **Hike everything above roughly 12% gradient — deliberately, even when you could run it.**\n6. **No stop longer than three minutes.** From Week 6, practise a timed \"aid station\" drill: stop, refill, eat, move.\n7. **Last 10 minutes on technical ground from Week 9.** Rolling an ankle when tired is a trainable skill.\n8. **Four lines in the log afterwards:** fe speed, what you ate and when, what your stomach did, any niggle.\n\n### The run/hike discipline\n\nThis is the skill that wins cutoff races, and it's counterintuitive enough that most people never practise it.\n\nYou are not trying to run TL50. You're trying to **hike the climbs efficiently and run everything runnable**, for eleven hours. Someone who runs the early climbs and walks the late flats finishes slower than someone who hikes every climb and runs every descent — and is far more likely to be sick at halfway, because high intensity shuts down gastric emptying.\n\n**Practise hiking when you feel strong enough to run.** That's the whole drill. It will feel wrong in September and it will save your race in November.\n\n**Power-hike technique:** short steps, high cadence, torso upright rather than bent, hands driving on your quads, breathing on a rhythm. It should feel like a distinct gear, not like giving up.\n\n**Descending technique** — you descend well, but detrained quads and a sprain history change the calculus. Shorten your stride, raise your cadence (your 133spm is low; aim to feel quicker rather than longer), land under your centre of mass rather than reaching ahead, and look three to four steps down the trail instead of at your feet. On technical ground, control speed with foot placement rather than by braking with your quads — braking is what destroys them by 30km.\n\n### The kit ladder\n\n**Level 1 — Weeks 1–5.** Small vest or handheld, 500ml–1L, phone, one food item.\n\n**Level 2 — Weeks 6–8.** Vest with 1.5L capacity, two or three food types, salt, headtorch from Week 6.\n\n**Level 3 — Week 9 onward.** **Full TL50 mandatory kit, at race weight, every single time.**\n\n☐ Pull the mandatory gear list from the TL50 race page and buy anything missing by the end of September. A loaded pack changes your climbing rate, your shoulders, your sweat rate and your centre of gravity on descents. Discovering that on 14 November is not a plan.\n\n### Vertical from long sessions\n\n| Weeks | From long sessions |\n|---|---|\n| 1–5 | ~2,350m |\n| 6–9 | ~4,130m |\n| 10–13 | ~5,350m |\n| 14–16 | ~2,200m |\n| **Total** | **~14,000m** |\n\nThe remaining ~6,000m of your 20,000m bank comes from weekday Grind sessions.\n\n### If a long session goes wrong\n\n**Ran out of time.** Cut the back end, keep the climbing. 2h with 800m beats 3h with 300m for these races.\n\n**Felt terrible from the start.** Convert it to a hike of the same duration. Time on feet is the point; running is just one way to accumulate it.\n\n**Stomach trouble.** Don't abandon the session — run the rescue protocol (drop effort, sip dilute liquid, salty food, resume at 30–40g/hr). Practising the recovery is worth more than a clean session.\n\n**Missed it entirely.** Try Saturday, or Monday morning if you can. If that's gone too, do not try to make it up midweek — take the shorter session and carry on. One missed long run costs you very little. Three consecutive ones cost you the race."
     },
     {
       "id": "fuelling",
       "title": "Fuelling — The Primary Objective",
       "icon": "gut",
-      "bodyMd": "**Two previous TL50 attempts have failed here. This is not a supporting protocol; it is the main thing this training block has to fix.**\n\n### The three numbers\n\n1. **You store ~1,800 kcal of glycogen.** That's the only fuel you can burn fast.\n2. **You'll oxidise carbohydrate at ~250–300 kcal/hour** at race effort. Fat covers the rest and is effectively unlimited.\n3. **Your gut absorbs a maximum of 60–90g carbs/hour** (~240–360 kcal), regardless of how much you swallow.\n\nSix hours of stored fuel, an eleven-hour race, and an absorption ceiling that only just covers the burn rate *if you eat continuously from the start*. There is no spare capacity and no way to catch up.\n\n### Why checkpoint-only fuelling fails — the mechanism\n\nThe stomach empties carbohydrate at **1–1.5g per minute**. That's a plumbing limit. 20–25g every 20 minutes sits exactly at that rate — which is where the 20-minute rule comes from.\n\nTL50's aid stations are at 7, 19.5, 26.3 and 36km — gaps of 1h20, **2h45**, 1h25, **2h35** and 2h40. Four feeding opportunities in eleven hours means ~175g per stop, which takes over two hours to leave the stomach.\n\nWhat follows is predictable: a concentrated bolus is hypertonic, so it draws water *into* the gut instead of absorbing. Sloshing, then nausea, then you stop eating. Now you're in deficit and cannot recover, because absorption is capped no matter how motivated you are. This is a strategy that fails arithmetically, not a weak stomach.\n\n### Why training the gut actually works\n\nThe SGLT1 transporter that carries glucose across the intestinal wall is **upregulated by repeated exposure**. Two to four weeks of consistent carbohydrate intake during exercise measurably raises tolerance. The gut adapts like tissue, not like a habit. Someone who has practised for twelve weeks handles 80g/hr; the same person untrained vomits at 50g/hr.\n\n**You have never trained the organ that failed.** That's the change this time.\n\n### Real food vs gels\n\nThe useful variables are **osmolality** and the **glucose-to-fructose ratio**, not whether something is natural. Glucose crosses via SGLT1, saturating near 60g/hr; fructose uses GLUT5, worth another 30g/hr. Mixing roughly 2:1 gives you two pipes rather than one — which is why starch plus fruit or honey beats either alone.\n\n**Strategy: real food for the first two-thirds, liquid and gels for the last third.** Late in a race, saliva drops, chewing becomes unpleasant, and solid food gets rejected in a way liquid doesn't. Carry 3–4 gels as insurance even if you intend never to use them.\n\n**Avoid mid-race: fat and fibre.** Both slow gastric emptying badly. No nuts, peanut butter, chocolate, oily pastries or wholemeal anything — precisely the \"healthy\" foods people reach for.\n\n**Palate fatigue is real.** Eleven hours of sweet produces genuine aversion by hour six. **Half your carbohydrate should be savoury.** This is the main advantage real food holds over gels.\n\n| Food | Carbs | Notes |\n|---|---|---|\n| Onigiri / salted rice ball | ~40g | Savoury, salted, easy to chew. The best single option |\n| Boiled baby potatoes, salted | ~7g each | Excellent savoury fuel. Carry in a zip bag |\n| White bread, honey or jam | ~25g per half | Cheap, glucose + fructose |\n| Medjool dates | ~18g each | Dense. Needs water alongside |\n| Banana | ~25g | Slightly ripe, never green |\n| Fig rolls | ~11g each | Tolerable late in a race |\n| Coca-Cola | ~35g / 330ml | Genuinely useful in the final third |\n| Maltodextrin drink in a soft flask | ~50g / 500ml | Carries carbs without chewing |\n| Salted plums (話梅) | — | Not fuel. Palate reset and sodium |\n\n### Sodium and fluid\n\n**500–800mg sodium and 400–600ml fluid per hour.** Sweat losses in Hong Kong run 0.8–1.5 L/hr at 300–1,500mg sodium per litre.\n\nThe mechanism usually left out: SGLT1 is the *sodium*-glucose linked transporter — it co-transports both. Sodium isn't only about cramps; it is directly required to absorb your carbohydrate. Under-salting throttles your fuelling.\n\n### The race plan — TL50\n\n**Target 65g carbs/hour ≈ 700g total, plus 20% reserve.**\n\n| Segment | Time | Carbs to carry |\n|---|---|---|\n| Start → Ham Tin | 1h20 | ~85g |\n| Ham Tin → Chi Ma Wan | 2h45 | **~180g** |\n| Chi Ma Wan → Mui Wo CP | 1h25 | ~90g |\n| Mui Wo CP → Discovery Bay | 2h35 | ~170g |\n| Discovery Bay → Finish | 2h40 | ~175g |\n\n**Rules on the day:**\n\n- **First feed at 30 minutes.** Not when hungry — hunger is a lagging indicator and by the time you feel it you're already behind.\n- **Timer every 20 minutes.** Three feeds an hour, 20–25g each. Eat on the beep. This is the single change that fixes your previous two attempts.\n- **Aid stations top up your supplies. They do not replace carrying your own.**\n- Drink alongside every solid feed.\n- ☐ **Check whether a drop bag is allowed at the Mui Wo checkpoint (26.3km)** — it's the start/finish area, and if so it halves what you carry early.\n\n### Your specific failure mode: delayed gastric emptying\n\nBoth attempts ended with nausea and vomiting at around halfway. That timing points at the Chi Ma Wan aid station — arriving at ~4 hours, behind and hungry, eating a large amount, and bringing it back up 30–60 minutes later.\n\nThis is **not** a food intolerance. Intolerances present in the first hour or two. This is the stomach failing to empty: blood is diverted from the gut to muscle and skin during exercise, splanchnic flow drops by 20–80%, contents accumulate, and eventually the accumulated volume comes back up. The food didn't disagree with you. It never left your stomach.\n\n**Four levers, in order of importance for your case:**\n\n**1. Effort.** Gastric emptying works reasonably below ~70% of max HR and collapses above ~80%. The hour before your nausea began was the Chi Ma Wan peninsula — 838m in 12.4km, the biggest climbing block of the race, early enough that you'd still feel strong. **Going too hard on Chi Ma Wan is what makes you vomit at Mui Wo.** Hike the climbs. Hold Chat Pace. Arrive at 19.5km feeling like you're going too slowly. Pacing is a fuelling intervention.\n\n**2. Delivery rate.** Never a bolus. 20–25g every 20 minutes, matched to the 1–1.5g/min emptying rate. Arrive at aid stations already fuelled and only top up — never arrive starving and stuff yourself.\n\n**3. Hydration.** Low plasma volume makes the body divert even more blood away from the gut. Under-drinking in the first three hours compounds the problem before you feel anything. 400–600ml/hr from the first 20 minutes, not from when you feel thirsty.\n\n**4. Concentration.** Keep drink mixes at 6–8% carbohydrate (60–80g/litre). Above ~10% emptying slows sharply. Dilute further than the packet says. Cold fluids empty marginally faster, which also helps thermally.\n\n**No NSAIDs.** Ibuprofen and similar reduce gut blood flow and increase intestinal permeability — they make this exact failure more likely. If they're part of your race routine, remove them.\n\n### 🚨 The rescue protocol — when nausea starts\n\n**Do not stop eating.** Stopping is what converts nausea into a DNF. The correct response reduces load on the gut while keeping fuel going in:\n\n1. **Drop your effort right down for 15–20 minutes.** Walk. This restores gut blood flow and is the fastest-acting intervention available to you.\n2. **Switch from solids to sipping.** Dilute drink or flat cola, small sips, continuously.\n3. **Take something salty** — salted plums, crisps, broth at an aid station.\n4. **Resume at reduced intake** — 30–40g/hr — rather than resuming at zero.\n5. **Ginger** in any form is worth carrying. Modest evidence, no downside.\n\nYou have 11 hours. Losing 30 minutes to a walking recovery costs you far less than the deficit you cannot repay. Nausea is recoverable; an empty stomach at hour eight is not.\n\n### Testing schedule\n\n| When | Target | What to test |\n|---|---|---|\n| Weeks 3–4 | 30g/hr | Two foods only. Establish a baseline that doesn't upset you |\n| Weeks 5–6 | 40–50g/hr | Introduce a savoury option. Start the 20-min timer habit |\n| Week 7 (3h45) | 50–60g/hr | Full race kit. Test carrying it, not just eating it |\n| Week 9 (5h30) | 65–75g/hr | The exact race plan, on the actual course |\n| Week 10 (RCWT) | 65g/hr | Full dress rehearsal. **Last day anything new is allowed** |\n| Week 12 | 65g/hr | Confirm, change nothing |\n\n**Two tests requiring no running:**\n\n**Sweat rate.** Weigh naked, run one hour, towel off, weigh again, add back any fluid drunk. 1kg lost = 1 litre sweat. Do it once in September heat and once in November. This gives you your real hourly fluid need rather than a guess.\n\n**Palatability at rest.** Eat the foods on the sofa first. If you can't face a rice ball there, you certainly won't at hour seven.\n\n**Keep a one-line log after every long run:** what you took, when, and what your stomach did. By Week 9 you'll know your own answer better than any general guidance. That log is worth more than this entire section."
+      "bodyMd": "**Two previous TL50 attempts have failed here. This is not a supporting protocol; it is the main thing this training block has to fix.**\n\n### The three numbers\n\n1. **You store ~1,800 kcal of glycogen.** That's the only fuel you can burn fast.\n2. **You'll oxidise carbohydrate at ~250–300 kcal/hour** at race effort. Fat covers the rest and is effectively unlimited.\n3. **Your gut absorbs a maximum of 60–90g carbs/hour** (~240–360 kcal), regardless of how much you swallow.\n\nSix hours of stored fuel, an eleven-hour race, and an absorption ceiling that only just covers the burn rate *if you eat continuously from the start*. There is no spare capacity and no way to catch up.\n\n### Why checkpoint-only fuelling fails — the mechanism\n\nThe stomach empties carbohydrate at **1–1.5g per minute**. That's a plumbing limit. 20–25g every 20 minutes sits exactly at that rate — which is where the 20-minute rule comes from.\n\nTL50's aid stations are at 7, 19.5, 26.3 and 36km — gaps of 1h20, **2h45**, 1h25, **2h35** and 2h40. Four feeding opportunities in eleven hours means ~175g per stop, which takes over two hours to leave the stomach.\n\nWhat follows is predictable: a concentrated bolus is hypertonic, so it draws water *into* the gut instead of absorbing. Sloshing, then nausea, then you stop eating. Now you're in deficit and cannot recover, because absorption is capped no matter how motivated you are. This is a strategy that fails arithmetically, not a weak stomach.\n\n### Why training the gut actually works\n\nThe SGLT1 transporter that carries glucose across the intestinal wall is **upregulated by repeated exposure**. Two to four weeks of consistent carbohydrate intake during exercise measurably raises tolerance. The gut adapts like tissue, not like a habit. Someone who has practised for twelve weeks handles 80g/hr; the same person untrained vomits at 50g/hr.\n\n**You have never trained the organ that failed.** That's the change this time.\n\n### Real food vs gels\n\nThe useful variables are **osmolality** and the **glucose-to-fructose ratio**, not whether something is natural. Glucose crosses via SGLT1, saturating near 60g/hr; fructose uses GLUT5, worth another 30g/hr. Mixing roughly 2:1 gives you two pipes rather than one — which is why starch plus fruit or honey beats either alone.\n\n**Strategy: real food for the first two-thirds, liquid and gels for the last third.** Late in a race, saliva drops, chewing becomes unpleasant, and solid food gets rejected in a way liquid doesn't. Carry 3–4 gels as insurance even if you intend never to use them.\n\n**Avoid mid-race: fat and fibre.** Both slow gastric emptying badly. No nuts, peanut butter, chocolate, oily pastries or wholemeal anything — precisely the \"healthy\" foods people reach for.\n\n**Palate fatigue is real.** Eleven hours of sweet produces genuine aversion by hour six. **Half your carbohydrate should be savoury.** This is the main advantage real food holds over gels.\n\n| Food | Carbs | Notes |\n|---|---|---|\n| Onigiri / salted rice ball | ~40g | Savoury, salted, easy to chew. The best single option |\n| Boiled baby potatoes, salted | ~7g each | Excellent savoury fuel. Carry in a zip bag |\n| White bread, honey or jam | ~25g per half | Cheap, glucose + fructose |\n| Medjool dates | ~18g each | Dense. Needs water alongside |\n| Banana | ~25g | Slightly ripe, never green |\n| Fig rolls | ~11g each | Tolerable late in a race |\n| Coca-Cola | ~35g / 330ml | Genuinely useful in the final third |\n| Maltodextrin drink in a soft flask | ~50g / 500ml | Carries carbs without chewing |\n| Salted plums (話梅) | — | Not fuel. Palate reset and sodium |\n\n### Sodium and fluid\n\n**500–800mg sodium and 400–600ml fluid per hour.** Sweat losses in Hong Kong run 0.8–1.5 L/hr at 300–1,500mg sodium per litre.\n\nThe mechanism usually left out: SGLT1 is the *sodium*-glucose linked transporter — it co-transports both. Sodium isn't only about cramps; it is directly required to absorb your carbohydrate. Under-salting throttles your fuelling.\n\n### The race plan — TL50\n\n**Target 65g carbs/hour ≈ 700g total, plus 20% reserve.**\n\n| Segment | Time | Carbs to carry |\n|---|---|---|\n| Start → Ham Tin | 1h20 | ~85g |\n| Ham Tin → Chi Ma Wan | 2h45 | **~180g** |\n| Chi Ma Wan → Mui Wo CP | 1h25 | ~90g |\n| Mui Wo CP → Discovery Bay | 2h35 | ~170g |\n| Discovery Bay → Finish | 2h40 | ~175g |\n\n**Rules on the day:**\n\n- **First feed at 30 minutes.** Not when hungry — hunger is a lagging indicator and by the time you feel it you're already behind.\n- **Timer every 20 minutes.** Three feeds an hour, 20–25g each. Eat on the beep. This is the single change that fixes your previous two attempts.\n- **Aid stations top up your supplies. They do not replace carrying your own.**\n- Drink alongside every solid feed.\n- ☐ **Check whether a drop bag is allowed at the Mui Wo checkpoint (26.3km)** — it's the start/finish area, and if so it halves what you carry early.\n\n### Your specific failure mode: delayed gastric emptying\n\nBoth attempts ended with nausea and vomiting at around halfway. That timing points at the Chi Ma Wan aid station — arriving at ~4 hours, behind and hungry, eating a large amount, and bringing it back up 30–60 minutes later.\n\nThis is **not** a food intolerance. Intolerances present in the first hour or two. This is the stomach failing to empty: blood is diverted from the gut to muscle and skin during exercise, splanchnic flow drops by 20–80%, contents accumulate, and eventually the accumulated volume comes back up. The food didn't disagree with you. It never left your stomach.\n\n**Four levers, in order of importance for your case:**\n\n**1. Effort.** Gastric emptying works reasonably below ~70% of max HR and collapses above ~80%. The hour before your nausea began was the Chi Ma Wan peninsula — 838m in 12.4km, the biggest climbing block of the race, early enough that you'd still feel strong. **Going too hard on Chi Ma Wan is what makes you vomit at Mui Wo.** Hike the climbs. Hold Chat Pace. Arrive at 19.5km feeling like you're going too slowly. Pacing is a fuelling intervention.\n\n**2. Delivery rate.** Never a bolus. 20–25g every 20 minutes, matched to the 1–1.5g/min emptying rate. Arrive at aid stations already fuelled and only top up — never arrive starving and stuff yourself.\n\n**3. Hydration.** Low plasma volume makes the body divert even more blood away from the gut. Under-drinking in the first three hours compounds the problem before you feel anything. 400–600ml/hr from the first 20 minutes, not from when you feel thirsty.\n\n**4. Concentration.** Keep drink mixes at 6–8% carbohydrate (60–80g/litre). Above ~10% emptying slows sharply. Dilute further than the packet says. Cold fluids empty marginally faster, which also helps thermally.\n\n**No NSAIDs.** Ibuprofen and similar reduce gut blood flow and increase intestinal permeability — they make this exact failure more likely. If they're part of your race routine, remove them.\n\n### 🚨 The rescue protocol — when nausea starts\n\n**Do not stop eating.** Stopping is what converts nausea into a DNF. The correct response reduces load on the gut while keeping fuel going in:\n\n1. **Drop your effort right down for 15–20 minutes.** Walk. This restores gut blood flow and is the fastest-acting intervention available to you.\n2. **Switch from solids to sipping.** Dilute drink or flat cola, small sips, continuously.\n3. **Take something salty** — salted plums, crisps, broth at an aid station.\n4. **Resume at reduced intake** — 30–40g/hr — rather than resuming at zero.\n5. **Ginger** in any form is worth carrying. Modest evidence, no downside.\n\nYou have 11 hours. Losing 30 minutes to a walking recovery costs you far less than the deficit you cannot repay. Nausea is recoverable; an empty stomach at hour eight is not.\n\n### Carrying weight — carb density matters\n\n700g of carbohydrate has to be carried up 2,508m. How you carry it is a real decision.\n\n| Source | Carb by weight | Role |\n|---|---|---|\n| Maltodextrin/fructose powder in a soft flask | ~95% | **Bulk carrier.** No weight penalty beyond water you'd carry anyway |\n| Dates | ~75% | Dense solid, needs water |\n| Gels | ~70% | Insurance, late race |\n| Onigiri / rice ball | ~36% | Savoury, palate reset |\n| Amino Vital jelly *(50g carbs per 250g pack)* | ~20% | **Late race only** — goes down when chewing has stopped being possible |\n| Salt capsules | — | Sodium with effectively zero weight |\n\n**Amino Vital jelly is GI-tested and tolerated ✅** — but at 20% carb by weight, 700g of carbs would mean 3.5kg of jelly. Carry 2–3 packs for after Discovery Bay, not as the primary source. Its 340mg sodium per pack is decent (~440mg/hr at race intake) but still needs topping up.\n\n### Testing schedule\n\n| When | Target | What to test |\n|---|---|---|\n| Weeks 3–4 | 30g/hr | Two foods only. Establish a baseline that doesn't upset you |\n| Weeks 5–6 | 40–50g/hr | Introduce a savoury option. Start the 20-min timer habit |\n| Week 7 (3h45) | 50–60g/hr | Full race kit. Test carrying it, not just eating it |\n| Week 9 (5h30) | 65–75g/hr | The exact race plan, on the actual course |\n| Week 10 (RCWT) | 65g/hr | Full dress rehearsal. **Last day anything new is allowed** |\n| Week 12 | 65g/hr | Confirm, change nothing |\n\n**Two tests requiring no running:**\n\n**Sweat rate.** Weigh naked, run one hour, towel off, weigh again, add back any fluid drunk. 1kg lost = 1 litre sweat. Do it once in September heat and once in November. This gives you your real hourly fluid need rather than a guess.\n\n**Palatability at rest.** Eat the foods on the sofa first. If you can't face a rice ball there, you certainly won't at hour seven.\n\n**Keep a one-line log after every long run:** what you took, when, and what your stomach did. By Week 9 you'll know your own answer better than any general guidance. That log is worth more than this entire section."
+    },
+    {
+      "id": "descent",
+      "title": "Descent Progression",
+      "icon": "descent",
+      "bodyMd": "Without poles, **your quads are the single point of failure at TL50** — 2,508m of descent absorbed entirely by legs that were detrained in July.\n\n**Track descent metres per Drop session, not total elevation.** The climb is transport; hike it easy. Only the descending is the stimulus. Each Drop in the app carries its target and asks for the descent you logged.\n\n| Weeks | Descent per Drop session |\n|---|---|\n| 3–4 | 250–300m |\n| 5–6 | 350–400m |\n| 7–8 | 450–500m |\n| 9–12 | 500–600m |\n\n**Progress by ~50–100m per fortnight, not per week.** Eccentric loading is the highest injury-risk stimulus in this plan and you have an ankle history. Rushing it is how you end up not starting.\n\n**Route selection matters now.** From Week 6, bias Sunday long runs toward descent-heavy terrain. 600m spread over gentle grades trains you far less than the same 600m dropped steeply.\n\n**Soreness is the signal.** Early Drop sessions should leave quads sore for a day or two — that's the adaptation. None at all means you're descending too cautiously. Beyond three days means you went too far."
     },
     {
       "id": "ankle",
@@ -1426,40 +1437,34 @@
       "bodyMd": "Your sprain history is the biggest injury risk in this plan. Proprioception degrades with fatigue faster than strength does, which is why rolls happen at hour seven, not hour one — and why a confident descender with weak ankles is more at risk, not less.\n\nTen minutes, twice a week, paired with the strength block on Monday and Thursday evenings. Barefoot, next to a wall.\n\n1. **Single-leg balance** — 3 × 30s each leg. Progress: eyes open → eyes closed → on a cushion, eyes closed. *Substitute freely with yoga balance postures — tree, warrior III, half moon, eagle. Identical proprioceptive stimulus, and you'll do them better and more willingly.*\n2. **Eccentric heel drops** — 3 × 15 each leg, off a step, lowering slowly.\n3. **Banded ankle eversion** — 3 × 15 each side. Targets the peroneals, which are what actually stop a roll.\n4. **From Week 6, add: single-leg hop and stick** — 3 × 8 each leg. Land, absorb, freeze for two seconds.\n\nAlso: from Week 9, do the last ten minutes of every long run deliberately on technical ground. Rolling an ankle when tired is a trainable skill."
     },
     {
+      "id": "strength",
+      "title": "Core & Upper Body — Leg-Biased",
+      "icon": "strength",
+      "bodyMd": "Twice weekly, ~20 minutes, at home, **paired with Ankle Church on Monday and Thursday evenings** — one 30-minute block rather than four things to remember. They're office days, so you've no trail access at lunch anyway.\n\n**Since you're not using poles, this block is leg-biased.** The upper-body work stays — it helps posture under a loaded pack, and you wanted it — but drops to maintenance while single-leg strength takes priority. Your legs now do 100% of 2,508m of climbing and descending, unassisted.\n\nThe relevant core for trail running is **anti-rotation and lateral stability**, not crunches. Nothing in trail running looks like a sit-up; a great deal of it looks like resisting sideways collapse on one leg.\n\n| Exercise | Sets | Why |\n|---|---|---|\n| **Eccentric step-down** | 3 × 10 each leg, 3s lowering | **The most important one.** Directly trains what absorbs 2,508m of descent |\n| **Bulgarian split squat** | 3 × 8–10 each leg | Single-leg strength under load — the climbing engine |\n| **Single-leg calf raise** | 3 × 12 each, straight and bent knee | Soleus and gastroc. Also an ankle stabiliser |\n| **Side plank** | 3 × 30–45s each side | Resisting lateral collapse is what your trunk does in every single-leg stance |\n| **Dead bug** or **bird dog** | 3 × 10 each side | Trunk stability. Alternate between them |\n| **Rows** (band or rowing machine) | 2 × 12 | Maintenance. Posture under a loaded vest |\n| **Push-ups** | 2 × (max − 2) | Maintenance |\n| **Farmer's carry** | 2 × 40m heavy | Grip and trunk under load |\n\nAdd load to the split squats and step-downs as they get easy — a weighted pack works fine at home.\n\nNever skip Ankle Church for this. If time is short, do the ankles and three of the six."
+    },
+    {
+      "id": "heat",
+      "title": "Heat & Hydration",
+      "icon": "heat",
+      "bodyMd": "Hong Kong training in August–October is a heat problem before it's a fitness problem.\n\n### You cannot reduce sweat, and shouldn't try\n\nEvaporative sweating is your only cooling mechanism in humidity. Sweat less and core temperature rises — worse performance, real heat-illness risk.\n\n**What acclimation actually does:** you sweat *more and earlier*, but at a **much lower sodium concentration** — roughly 1,000mg/L down to 200–400mg/L as aldosterone drives sodium reabsorption in the sweat glands. Plasma volume expands 4–15% within one to two weeks. Mineral loss per litre falls even as volume rises. Thin, bland-tasting sweat is a marker of this adaptation.\n\n**So the target is heat load, not sweat volume.**\n\n### Hourly targets\n\n| | Aim for |\n|---|---|\n| Fluid | **500–750 ml/hr** *(gut ceiling is ~800ml/hr — most people drink far less than they could)* |\n| Sodium | **500–800 mg/hr** |\n\nPocari Sweat carries ~245mg sodium per 500ml — nowhere near enough on its own. Pair it with salt capsules, salted rice balls, or salted plums.\n\nPerformance degrades measurably past 2% of body mass lost. A 4–5 hour session in HK summer can easily reach 5% if you drink at 400ml/hr.\n\n### Reducing heat load\n\n- **Pace.** Metabolic heat production is proportional to intensity. Hiking climbs rather than running them lowers heat generation directly — the same intervention that protects your stomach.\n- **Cold in, early.** Ice slurry or very cold fluid before and during is well-evidenced for lowering thermal strain.\n- **Cool from outside.** Water over head and neck at every stream, ice in a buff. Lantau's streams are an asset.\n- **Clothing.** Loose, light-coloured, genuinely wicking. Wet the cap.\n- **Start hydrated.** Beginning a session down a litre is a self-inflicted handicap.\n- **Time of day.** Lunchtime is the hottest window in Hong Kong. Early mornings cut heat load dramatically where work allows it.\n\n### ☐ Do the sweat rate test\n\nWeigh naked, run one hour, towel off, weigh again, add back fluid drunk. 1kg lost = 1 litre sweat. Once in September heat, once in November. This replaces guesswork with your actual number — and it's the most useful measurement available to you."
+    },
+    {
       "id": "poles",
-      "title": "The Pole Decision",
+      "title": "Poles — Decided: No",
       "icon": "poles",
-      "bodyMd": "You own poles and rarely use them. That's the worst position, because TL50's rules force the choice at the start line — you either carry them the whole way or you don't have them at all.\n\nPoling is a trained skill and a trained set of muscles. Someone who picks up poles cold for an 11-hour day gets shredded lats, a slower climb rate, and hands too tired to open a gel.\n\n- **Weeks 3 onward** — poles on every single Long One\n- **Week 6** — poles on one weekday Grind\n- **Week 9** — poles for the full 5h30 recce\n- **Week 10** — poles at RCWT, start to finish\n- **After RCWT** — decision locked, either way\n\nGiven your ankle history and 2,508m of descending, I expect the answer is yes. But test it rather than assume it."
+      "bodyMd": "You've chosen to train your legs to do the work rather than let poles carry you to the finish.\n\n**What you give up:** poles offload roughly 5–15% of climbing load, reduce eccentric damage on descents, and provide two extra contact points on technical ground — the best available mitigation for your sprain history.\n\n**What you gain:** free hands. Every feed becomes frictionless, and **fuelling is your documented failure mode**. Poles also cost ~5% metabolically at the same speed, and untrained poling over 11 hours wrecks shoulders and grip.\n\n**The consequence:** you have moved the risk from your gut to your quads and ankles. The plan compensates by loading both harder — see the Descent Progression and the leg-biased strength block.\n\n### ☂️ The insurance option\n\nUTMB rules require poles to be carried start-to-finish if used at all, so **stowed-but-unused is permitted**. Carrying them collapsed costs ~500g and buys an escape hatch if your quads fail on Lo Fu Tau or the Olympic Trail. In a race that has beaten you twice, half a kilo for an emergency option is cheap. Decide before race week, not on the morning."
     },
     {
       "id": "yoga",
       "title": "Yoga",
       "icon": "yoga",
-      "bodyMd": "**Sunday, 20–30 minutes, gentle.** Not a substitute for the strength block.\n\n**What it won't do:** prevent injuries, or lengthen \"tight\" muscles. Post-climb tightness is protective neural tone and soreness, not shortened tissue — stretching relieves it by raising stretch tolerance, which is why the relief is real but temporary.\n\n**What it will do:**\n\n- **Balance postures are proprioception training.** Tree, warrior III, half moon, eagle — the same stimulus as the ankle protocol's balance work, done better because you have years of practice. Substitute them in.\n- **Thoracic mobility** for poling. Eleven hours of pole work asks for rotation and extension through the upper back.\n- **Adherence.** You enjoy it and you're good at it. Given motivation is the main risk in this plan, that counts for more than marginal exercise optimisation.\n\n**Three cautions:**\n\n- **Don't chase deeper ankle range.** Your history is sprains — you need stability, not flexibility. Extra passive range at a repeatedly injured joint works against you.\n- **No deep static stretching straight after the long run.** The tissue has micro-damage; end-range loading isn't what it needs. Ten gentle minutes, not a deep hamstring session.\n- **Skip hot yoga in heavy weeks.** Additional heat stress and fluid loss you don't need."
-    },
-    {
-      "id": "strength",
-      "title": "Core & Upper Body — The Poling Engine",
-      "icon": "strength",
-      "bodyMd": "Twice weekly, ~20 minutes, at home, **paired with Ankle Church on Monday and Thursday evenings** — one 30-minute block rather than four things to remember. They're office days, so you've no trail access at lunch anyway.\n\nYour upper-body goal and your race goal happen to align. Eleven hours on poles loads lats, triceps, shoulders and grip far harder than most people expect, and hands too tired to open a gel at 35km is a real and common failure. So this is training, not just toning.\n\nThe relevant core for trail running is **anti-rotation and lateral stability**, not crunches. Nothing in trail running looks like a sit-up; a great deal of it looks like resisting sideways collapse on one leg.\n\n| Exercise | Sets | Why |\n|---|---|---|\n| **Side plank** | 3 × 30–45s each side | The most trail-relevant core exercise there is — resisting lateral collapse is what your trunk does in every single-leg stance |\n| **Dead bug** | 3 × 10 each side | Trunk stability with limbs moving independently |\n| **Bird dog** | 3 × 10 each side | Adds the posterior chain and hip control |\n| **Push-ups** | 3 × (max − 2) | Triceps and shoulders — the pole push-off |\n| **Rows** (band or rowing machine) | 3 × 12 | Lats and rear delts — the pole pull. The primary poling muscles |\n| **Farmer's carry** | 2 × 40m heavy | Grip and trunk under load. Transfers directly to poles |\n\nNever skip Ankle Church for this. If time is short, do the ankles and three of the six."
-    },
-    {
-      "id": "nutrition",
-      "title": "Daily Nutrition",
-      "icon": "food",
-      "bodyMd": "Distinct from race fuelling. This is about maximising what you get back from the training.\n\n**The mindset:** you are building from detrained on limited hours. Every session has to produce adaptation, and adaptation is bought with food and sleep. The risk here is under-fuelling, not over-eating — an under-fuelled build is the fastest route to both injury and the motivation crash.\n\n**Protein — 1.6–2.0g per kg of bodyweight, daily.** Spread across four meals at 25–40g each rather than loaded at dinner. This matters more for you than for the average runner: connective tissue adaptation is what protects your ankles, and it's protein-dependent.\n\n**Collagen + vitamin C before ankle work.** 15g of collagen or plain gelatin with 50mg vitamin C, 30–60 minutes before Ankle Church. Evidence is moderate rather than conclusive, but it's cheap, safe, and aimed squarely at your weakest link.\n\n**Carbohydrate around the Long One.** Eat well the day before, and don't run the long one fasted while you're building. Fasted long runs are a tool for a different goal than yours.\n\n**Low fibre for 24 hours before every Long One and every race.** This is the single highest-value item in this section given your GI history. High fibre is excellent daily nutrition and a genuine liability at hour six. Most people never connect the two.\n\n**Recovery window.** Carbs plus protein within an hour of finishing the Long One. On the other days it matters much less than the internet suggests.\n\n**Sodium daily, not just on race day.** Hong Kong summer sweat rates are high enough that chronic sodium depletion is a real thing. Salt your food generously through September.\n\n**Rehearse the race breakfast every long run.** Two to two-and-a-half hours before the start, 1–2g carbs per kg, low fibre, low fat. By 14 November your stomach should recognise it.\n\n**Caffeine.** Useful, and worth standardising rather than improvising — don't race on a dose you haven't trained with.\n\n**Alcohol.** The night before a Long One is the one to protect. Sleep quality is where the damage is done, not the calories.\n\n**Worth checking:** if fatigue persists disproportionately in September, ask your GP for a ferritin test. Endurance athletes lose iron, and low ferritin feels exactly like being unfit.\n\n**And the biggest lever of all is sleep.** No supplement in this section comes close."
+      "bodyMd": "**Sunday, 20–30 minutes, gentle.** Not a substitute for the strength block.\n\n**What it won't do:** prevent injuries, or lengthen \"tight\" muscles. Post-climb tightness is protective neural tone and soreness, not shortened tissue — stretching relieves it by raising stretch tolerance, which is why the relief is real but temporary.\n\n**What it will do:**\n\n- **Balance postures are proprioception training.** Tree, warrior III, half moon, eagle — the same stimulus as the ankle protocol's balance work, done better because you have years of practice. Substitute them in.\n- **Hip mobility and thoracic rotation.** Useful for climbing stride length and for carrying a loaded vest over 11 hours.\n- **Adherence.** You enjoy it and you're good at it. Given motivation is the main risk in this plan, that counts for more than marginal exercise optimisation.\n\n**Three cautions:**\n\n- **Don't chase deeper ankle range.** Your history is sprains — you need stability, not flexibility. Extra passive range at a repeatedly injured joint works against you.\n- **No deep static stretching straight after the long run.** The tissue has micro-damage; end-range loading isn't what it needs. Ten gentle minutes, not a deep hamstring session.\n- **Skip hot yoga in heavy weeks.** Additional heat stress and fluid loss you don't need."
     },
     {
       "id": "rowing",
       "title": "The Rowing Machine",
       "icon": "row",
-      "bodyMd": "Dust it off. It's more useful than you'd think — with one hard condition: **it substitutes, it never adds.**\n\n**What it gives you:**\n\n- **Non-impact aerobic volume.** You can add engine without adding impact load while your tissues catch up to your ambitions. That's valuable in exactly your situation.\n- **The poling muscles.** Lats, rear delts, triceps, grip — rowing trains the precise musculature you'll need on 2,500m of climbing.\n- **Zero friction.** It's in your house. On the days when motivation is the binding constraint, the session you can start in thirty seconds is the only one that happens.\n- **It's indoors.** Beats a September lunchtime in Hong Kong.\n\n**What it cannot do:** eccentric quad loading, ankle proprioception, or course specificity. It will not prepare your legs for descending, which is the thing most likely to end your TL50. Treat it as a complement, never a replacement.\n\n**How to use it:**\n\n- **Primary role — the backup Shuffle.** Missed a lunchtime run? 25–30 minutes steady on the rower. Session saved.\n- **Optional extra:** one 20-minute easy row on a non-running day, but only in weeks totalling under 5 hours.\n- **Never** in Weeks 9, 13 or 16. Those are peak and taper weeks where extra load costs you more than it buys.\n- **Technique:** legs → core → arms on the drive, arms → core → legs on the recovery. Keep the stroke rate low (20–24 spm) and the pressure high. High-rate flailing trains nothing."
-    },
-    {
-      "id": "commute",
-      "title": "The Commute Protocol",
-      "icon": "bus",
-      "bodyMd": "Three office days, two hours of bus each — six hours a week of dead time.\n\nBeing straight with you: this is **aerobically worthless**. You cannot build endurance sitting down and I'd be making things up if I claimed otherwise. But two of these genuinely target your weak points, and they cost you nothing.\n\n**🪑 Seated tibialis anterior raises — 3 × 25.** Heels planted, lift the toes as high as they'll go, lower slowly. The tib ant controls foot placement on descents and produces that burning shin sensation late in a long downhill. Almost nobody trains it. You have six hours a week.\n\n**🪑 Seated soleus raises — 3 × 25.** Knees bent at 90°, press through the forefoot, heels up. Bent-knee calf raises target the soleus specifically — a major ankle stabiliser and a muscle that takes enormous load in trail running.\n\n**🪑 Banded eversion.** Keep a mini-band in your bag. Same movement as in the ankle protocol, entirely discreet.\n\n**🧍 Standing, if you can get a spot.** A moving bus is legitimately excellent proprioception training — unpredictable multi-directional perturbation, which is exactly what a trail delivers. Loose knees, hand near the rail but not gripping it. This is the best ankle training available on a commute, and it's free.\n\n**🪑 Isometric bracing — 10 × 10s.** Brace the trunk as though about to be poked in the stomach, breathe normally throughout. Modest benefit, but it's genuinely dead time.\n\nSupplementary, not foundational. Don't let it become a reason to skip anything else."
+      "bodyMd": "Dust it off. It's more useful than you'd think — with one hard condition: **it substitutes, it never adds.**\n\n**What it gives you:**\n\n- **Non-impact aerobic volume.** You can add engine without adding impact load while your tissues catch up to your ambitions. That's valuable in exactly your situation.\n- **Upper-body maintenance.** Lats, rear delts, triceps, grip — the posture-under-a-loaded-vest work the strength block now keeps at maintenance.\n- **Zero friction.** It's in your house. On the days when motivation is the binding constraint, the session you can start in thirty seconds is the only one that happens.\n- **It's indoors.** Beats a September lunchtime in Hong Kong.\n\n**What it cannot do:** eccentric quad loading, ankle proprioception, or course specificity. It will not prepare your legs for descending, which is the thing most likely to end your TL50. Treat it as a complement, never a replacement.\n\n**How to use it:**\n\n- **Primary role — the backup Shuffle.** Missed a lunchtime run? 25–30 minutes steady on the rower. Session saved.\n- **Optional extra:** one 20-minute easy row on a non-running day, but only in weeks totalling under 5 hours.\n- **Never** in Weeks 9, 13 or 16. Those are peak and taper weeks where extra load costs you more than it buys.\n- **Technique:** legs → core → arms on the drive, arms → core → legs on the recovery. Keep the stroke rate low (20–24 spm) and the pressure high. High-rate flailing trains nothing."
     },
     {
       "id": "triage",
@@ -1472,8 +1477,14 @@
     {
       "id": "crew",
       "label": "Crew Assembled",
-      "hint": "Found a training partner or group",
+      "hint": "Found a training partner — also running TL50 ✅",
       "dueDate": "2026-09-06",
+      "auto": false
+    },
+    {
+      "id": "bloods",
+      "label": "Bloods Checked",
+      "hint": "FBC, ferritin, TSH, HbA1c, B12",
       "auto": false
     },
     {
@@ -1507,10 +1518,14 @@
       }
     },
     {
-      "id": "poled-up",
-      "label": "Poled Up",
-      "hint": "First long run entirely on poles",
-      "auto": false
+      "id": "quad-armour",
+      "label": "Quad Armour",
+      "hint": "First Drop session over 500m of descent",
+      "auto": true,
+      "trigger": {
+        "type": "dropDescent",
+        "value": 500
+      }
     },
     {
       "id": "gut-check",

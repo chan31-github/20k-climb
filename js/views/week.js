@@ -32,6 +32,7 @@ function sessionRow(session, dateISO) {
   const bits = [];
   if (session.targetMinutes) bits.push(hhmm(session.targetMinutes));
   if (session.targetGainM) bits.push(`${Number(session.targetGainM).toLocaleString()} m`);
+  if (session.targetDescent) bits.push(`↓ ${esc(session.targetDescent)} m`);
   bits.push(TYPE_LABEL[session.type] || session.type);
   if (session.critical) bits.push('Key session');
   if (session.optional) bits.push('Optional');

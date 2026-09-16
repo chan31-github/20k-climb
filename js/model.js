@@ -145,6 +145,11 @@ export function evaluateAchievements(log = store.state) {
     return Math.max(best, mins);
   }, 0);
 
+  const deepestDrop = Object.keys(log.entries).reduce((best, id) => {
+    const e = log.entries[id], s = findSession(id, log);
+    return e && e.completed && s && s.type === 'drop' ? Math.max(best, num(e.descentM)) : best;
+  }, 0);
+
   const perfect = plan.weeks.map(w => weekStats(w, log)).map(s => s.total > 0 && s.done === s.total);
   let streak = 0, bestStreak = 0;
   for (const ok of perfect) { streak = ok ? streak + 1 : 0; bestStreak = Math.max(bestStreak, streak); }
@@ -157,6 +162,7 @@ export function evaluateAchievements(log = store.state) {
     else if (t.type === 'longRunMinutes' || t.type === 'sessionMinutes') hit = longestLong >= t.value;
     else if (t.type === 'session') hit = !!(log.entries[t.value] && log.entries[t.value].completed);
     else if (t.type === 'perfectWeekStreak') hit = bestStreak >= t.value;
+    else if (t.type === 'dropDescent') hit = deepestDrop >= t.value;
     if (hit) store.setAchievement(a.id, today);
   }
 }

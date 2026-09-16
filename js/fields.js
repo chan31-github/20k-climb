@@ -18,6 +18,10 @@ export const FIELDS = {
     kind: 'number', label: 'Climb (m)', step: 10, mode: 'numeric',
     summary: v => `${Number(v).toLocaleString()} m`
   },
+  descentM: {
+    kind: 'number', label: 'Descent (m)', step: 10, mode: 'numeric',
+    summary: v => `${Number(v).toLocaleString()} m down`
+  },
   avgHr: {
     kind: 'number', label: 'Avg HR', step: 1, mode: 'numeric',
     summary: v => `${v} bpm`
@@ -54,7 +58,7 @@ const BY_TYPE = {
   race:     ['durationMin', 'distanceKm', 'gainM', 'avgHr', 'rpe', 'notes'],
   shuffle:  ['durationMin', 'distanceKm', 'gainM', 'avgHr', 'rpe', 'notes'],
   grind:    ['durationMin', 'gainM', 'reps', 'avgHr', 'rpe', 'notes'],
-  drop:     ['durationMin', 'gainM', 'reps', 'avgHr', 'rpe', 'notes'],
+  drop:     ['durationMin', 'descentM', 'gainM', 'reps', 'avgHr', 'rpe', 'notes'],
   row:      ['durationMin', 'distanceKm', 'avgHr', 'rpe', 'notes'],
   ankle:    ['durationMin', 'balance', 'hopStick', 'notes'],
   evening:  ['durationMin', 'balance', 'hopStick', 'exercises', 'notes'],
