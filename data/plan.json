@@ -435,7 +435,21 @@
           "targetMinutes": 105,
           "targetGainM": 450,
           "detail": "First rehearsal of the system. First fuelling test at 30g/hr on the timer, two foods only, nothing exotic. Success: you ate on schedule five times and your stomach was fine.",
-          "critical": true
+          "critical": true,
+          "fuel": {
+            "carbs": [
+              30,
+              30
+            ],
+            "fluid": [
+              500,
+              750
+            ],
+            "sodium": [
+              500,
+              800
+            ]
+          }
         }
       ]
     },
@@ -524,7 +538,21 @@
           "targetMinutes": 135,
           "targetGainM": 650,
           "detail": "Extend, and start the hike discipline. 30–40g/hr. Deliberately hike every climb above 12% even where you could run — watch your heart rate on the climbs, it should stay conversational. 🏆 First Long One past two hours.",
-          "critical": true
+          "critical": true,
+          "fuel": {
+            "carbs": [
+              30,
+              40
+            ],
+            "fluid": [
+              500,
+              750
+            ],
+            "sodium": [
+              500,
+              800
+            ]
+          }
         }
       ]
     },
@@ -613,7 +641,21 @@
           "targetMinutes": 90,
           "targetGainM": 400,
           "detail": "Recovery — genuinely easy. Keep the fuelling timer running anyway: the habit matters more than the volume.",
-          "critical": true
+          "critical": true,
+          "fuel": {
+            "carbs": [
+              40,
+              50
+            ],
+            "fluid": [
+              600,
+              600
+            ],
+            "sodium": [
+              500,
+              800
+            ]
+          }
         }
       ]
     },
@@ -690,7 +732,21 @@
           "targetMinutes": 180,
           "targetGainM": 950,
           "detail": "First long day, and first darkness. 40–50g/hr, and introduce a savoury option here — rice ball or salted potatoes. Headtorch in the pack: start before dawn or finish after dark. First three-minute aid station drill: stop, refill, eat, move. Descent-heavy route, finish on downhill. Success: three hours, savoury food tolerated, fe speed logged. 🏆 Night Shift.",
-          "critical": true
+          "critical": true,
+          "fuel": {
+            "carbs": [
+              40,
+              50
+            ],
+            "fluid": [
+              700,
+              700
+            ],
+            "sodium": [
+              700,
+              1000
+            ]
+          }
         }
       ]
     },
@@ -767,7 +823,21 @@
           "targetMinutes": 225,
           "targetGainM": 1250,
           "detail": "Fuelling at race volume, and restraint on sustained climbs. You've already run Chi Ma Wan (30 Aug), so this doesn't need Mui Wo — Pat Sin Leng gives the same character: steep stone steps, an exposed ridge, repeated long climbs, close to home. Start ~05:45 with a headtorch; sunrise is ~06:15. Take the steepest stepped section uphill, not down, and walk steep descents while the quads recover. Carry 2–2.5L — no water on the ridge; refill at start/end and use that stop as your timed three-minute aid station drill. Salted Pocari at 700–800 ml/hr, cold, on the 20-minute alert — the main test of the day. 50–60g/hr carbs, first savoury food, Level 2 kit. Hold back on the big climbs: practise the restraint Chi Ma Wan will demand. Success: fluid target hit, stomach happy, heart rate conversational on the climbs.",
-          "critical": true
+          "critical": true,
+          "fuel": {
+            "carbs": [
+              50,
+              60
+            ],
+            "fluid": [
+              700,
+              800
+            ],
+            "sodium": [
+              700,
+              1000
+            ]
+          }
         }
       ]
     },
@@ -844,7 +914,21 @@
           "targetMinutes": 120,
           "targetGainM": 500,
           "detail": "Recovery before the big one. Easy, timer running.",
-          "critical": true
+          "critical": true,
+          "fuel": {
+            "carbs": [
+              50,
+              60
+            ],
+            "fluid": [
+              750,
+              800
+            ],
+            "sodium": [
+              700,
+              1000
+            ]
+          }
         }
       ]
     },
@@ -911,7 +995,21 @@
           "targetMinutes": 330,
           "targetGainM": 1430,
           "detail": "Go past the point where you have twice failed. The actual first half of TL50: Mui Wo → Ham Tin → Chi Ma Wan → back to Mui Wo, 26.3km and 1,427m. Start at 09:00 — the real race start time. Leave home around 07:00; no overnight needed. This puts you on Chi Ma Wan in the midday heat, which is exactly where both attempts failed. Full TL50 mandatory kit at race weight, 65–75g/hr on the timer, exact race breakfast. Target 6.3 km/h fe — no faster. Finish at Mui Wo, then stand there and register that on race day you'd still have 18km and 1,081m to go. Success: 5h30 done, eating normally at the end, no nausea.",
-          "critical": true
+          "critical": true,
+          "fuel": {
+            "carbs": [
+              65,
+              75
+            ],
+            "fluid": [
+              750,
+              800
+            ],
+            "sodium": [
+              700,
+              1000
+            ]
+          }
         }
       ]
     },
@@ -975,7 +1073,21 @@
           "targetMinutes": 400,
           "targetGainM": 1540,
           "detail": "30km / 1,540m+, 11h limit. Target finish 15:10 (6h40), which is 4.1 km/h fe. This is not a race — it's a laboratory. Chat Pace throughout, 65g/hr on the timer from 30 minutes in, hands-free fuelling from start to finish. Afterwards write down three things: what hurt, what your stomach did, what you'd change.",
-          "critical": true
+          "critical": true,
+          "fuel": {
+            "carbs": [
+              65,
+              65
+            ],
+            "fluid": [
+              750,
+              800
+            ],
+            "sodium": [
+              700,
+              1000
+            ]
+          }
         },
         {
           "id": "w10-sun-rest",
@@ -1137,7 +1249,21 @@
           "targetMinutes": 150,
           "targetGainM": 900,
           "detail": "See the ground you have never seen. Mui Wo → Lo Fu Tau → Discovery Bay, or the Olympic Trail section back. Both attempts ended before this half of the course, and it holds 1,081m of climbing. Final 45 minutes at exact race effort. 65g/hr — change nothing from RCWT. Success: the back half is no longer unknown.",
-          "critical": true
+          "critical": true,
+          "fuel": {
+            "carbs": [
+              65,
+              65
+            ],
+            "fluid": [
+              750,
+              800
+            ],
+            "sodium": [
+              700,
+              1000
+            ]
+          }
         }
       ]
     },
@@ -1201,7 +1327,21 @@
           "targetMinutes": 645,
           "targetGainM": 2508,
           "detail": "44.5km / 2,508m+, cutoff 20:00. Target finish 19:45 (10h45), which is 6.3 km/h fe. First feed at 30 minutes, then on the 20-minute timer — led by salted Pocari at 800 ml/hr, topped up with solids. If it's hot, run the hot race strategy: 11:30–15:30 is survival mode, press on the final two climbs after ~16:00. Hike everything above 12%; arrive at Chi Ma Wan feeling like you're going too slowly. Headtorch on before Discovery Bay, not after.",
-          "critical": true
+          "critical": true,
+          "fuel": {
+            "carbs": [
+              65,
+              65
+            ],
+            "fluid": [
+              800,
+              800
+            ],
+            "sodium": [
+              700,
+              1000
+            ]
+          }
         },
         {
           "id": "w13-sun-rest",

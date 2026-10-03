@@ -9,6 +9,7 @@ import {
 } from '../model.js';
 import { FIELDS, fieldsFor, coerce, summaryOf } from '../fields.js';
 import { current } from '../update.js';
+import { fuelSection, wireFuel } from './fuel.js';
 import { todayISO, formatShort, formatRange, daysBetween, DAYS, DAY_LONG, hhmm } from '../dates.js';
 
 const open = new Set();          // session ids with the log form expanded
@@ -144,6 +145,7 @@ function detailAndForm(session, entry) {
   <div class="logform">
     ${fieldsFor(session).map(key => fieldControl(session, entry, key)).join('')}
   </div>
+  ${fuelSection(session)}
   ${adjustFooter(session)}`;
 }
 
@@ -285,6 +287,8 @@ function sessionOnScreen(id) {
 }
 
 function wire(container) {
+  wireFuel(container, sessionOnScreen);
+
   on(container, 'click', '[data-act="prev"]', () => { setWeek(weekNumber - 1); render(container); });
   on(container, 'click', '[data-act="next"]', () => { setWeek(weekNumber + 1); render(container); });
 

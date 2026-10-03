@@ -25,6 +25,7 @@ const SHELL = [
   'js/sync.js',
   'js/theme.js',
   'js/views/week.js',
+  'js/views/fuel.js',
   'js/views/fullplan.js',
   'js/views/vertical.js',
   'js/views/races.js',

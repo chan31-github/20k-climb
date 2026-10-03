@@ -1,7 +1,7 @@
 // The activity log: localStorage-backed, versioned, and mergeable per entry.
 
 export const LOG_KEY = 'lantau-log-v1';
-export const SCHEMA_VERSION = 3;
+export const SCHEMA_VERSION = 4;
 
 function blank() {
   return {
@@ -10,6 +10,8 @@ function blank() {
     entries: {},              // sessionId -> { completed, completedDate, durationMin, distanceKm, gainM, rpe, notes, updatedAt }
     adjustments: {},          // sessionId -> { day, updatedAt } — day null means "back where the plan put it"
     extras: {},               // extraId   -> { id, weekNumber, day, type, title, targetMinutes, deleted, updatedAt }
+    fuel: {},                 // sessionId -> { items: { itemId: qty }, durationMin, targets, updatedAt }
+    fuelItems: {},            // itemId    -> your own items, and your values for library ones
     achievements: {},         // achievementId -> "YYYY-MM-DD"
     achievementsMeta: {},     // achievementId -> updatedAt (kept apart so `achievements` stays human-readable)
     races: {},                // raceId -> { splits: { index: "HH:MM" }, updatedAt }
@@ -58,6 +60,8 @@ function migrate(raw) {
   s.entries = s.entries || {};
   s.adjustments = s.adjustments || {};
   s.extras = s.extras || {};
+  s.fuel = s.fuel || {};
+  s.fuelItems = s.fuelItems || {};
   s.achievements = s.achievements || {};
   s.achievementsMeta = s.achievementsMeta || {};
   s.races = s.races || {};
@@ -192,6 +196,24 @@ export const store = {
     commit('extra');
   },
 
+  // --- Fuel plans ------------------------------------------------------------
+
+  fuelPlan(sessionId) { return state.fuel[sessionId] || null; },
+
+  /** Shallow-merges a patch into one session's fuel plan. */
+  setFuelPlan(sessionId, patch) {
+    const prev = state.fuel[sessionId] || { items: {} };
+    state.fuel[sessionId] = Object.assign({}, prev, patch, { updatedAt: now() });
+    commit('fuel');
+  },
+
+  fuelItem(id) { return state.fuelItems[id] || null; },
+
+  setFuelItem(id, item) {
+    state.fuelItems[id] = Object.assign({}, item, { id, updatedAt: now() });
+    commit('fuel');
+  },
+
   achievement(id) { return state.achievements[id] || null; },
 
   setAchievement(id, dateISO) {
@@ -259,6 +281,11 @@ export function mergeLogs(a, b) {
   }
   for (const id of new Set([...Object.keys(A.extras), ...Object.keys(B.extras)])) {
     out.extras[id] = newer(A.extras[id], B.extras[id]);
+  }
+  for (const key of ['fuel', 'fuelItems']) {
+    for (const id of new Set([...Object.keys(A[key]), ...Object.keys(B[key])])) {
+      out[key][id] = newer(A[key][id], B[key][id]);
+    }
   }
 
   for (const id of new Set([...Object.keys(A.achievements), ...Object.keys(B.achievements),

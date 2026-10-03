@@ -85,7 +85,7 @@ look on launch and mentions a newer release if it finds one.
 ## Your log
 
 Ticks and metrics live in this browser's `localStorage` under `lantau-log-v1`, at
-`schemaVersion: 3`. They survive closing the browser and going offline. They do **not** move between devices on
+`schemaVersion: 4`. They survive closing the browser and going offline. They do **not** move between devices on
 their own — for that, either use export/import or set up sync.
 
 ### Moving a session, and adding one
@@ -100,6 +100,22 @@ one removes what you logged against it too.
 Both live in your log, not in `plan.json`. The plan stays exactly as your coach wrote it,
 your adjustments ride on top, and they sync between devices with everything else — merged
 per session, most recent write wins.
+
+### Fuel plan
+
+Long runs and races have a **Fuel plan** below the log form. Add what you're carrying
+from the item list and set the count with − / +; it totals carbs, fluid and sodium,
+gives each as a rate per hour against the run's targets (✅ enough · ⚠️ within 10% ·
+❌ short · ℹ️ far more than needed), and estimates the pack weight and the carbs per
+feed on the coach's 20-minute timer (first feed at 30 min).
+
+Targets come from the session's `fuel` block in `plan.json` (`carbs`, `fluid`, `sodium`
+as `[low, high]` per hour, and `reserve` as a percentage applied to carbs only), and fall
+back to race targets where a session has none. **Edit** overrides them for that run;
+duration defaults to the session's planned length. Library values come from the coach's
+documents and product labels — items whose values depend on the brand show `?` until you
+enter yours with ✎, which then applies everywhere. **Something else** adds an item of
+your own. Plans sync with the rest of your log.
 
 ### Export / import
 
@@ -184,6 +200,7 @@ js/md.js            tiny markdown renderer
 js/dom.js           small DOM helpers
 js/update.js        which version this is, and whether GitHub has a newer one
 js/fields.js        which metrics each session type asks for
+js/views/fuel.js    the fuel plan calculator and its item library
 js/theme.js         dark/light
 js/views/*.js       one file per tab
 icons/              app icons
