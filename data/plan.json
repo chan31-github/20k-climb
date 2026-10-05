@@ -1671,7 +1671,11 @@
       "id": "gut-check",
       "label": "Gut Check",
       "hint": "60g/hr with no complaints from the stomach",
-      "auto": false
+      "auto": true,
+      "trigger": {
+        "type": "gutCheck",
+        "value": 60
+      }
     },
     {
       "id": "recce",

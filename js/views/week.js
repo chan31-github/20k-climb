@@ -9,7 +9,7 @@ import {
 } from '../model.js';
 import { FIELDS, fieldsFor, coerce, summaryOf } from '../fields.js';
 import { current } from '../update.js';
-import { fuelSection, wireFuel } from './fuel.js';
+import { fuelSection, wireFuel, fuelSummary } from './fuel.js';
 import { todayISO, formatShort, formatRange, daysBetween, DAYS, DAY_LONG, hhmm } from '../dates.js';
 
 const open = new Set();          // session ids with the log form expanded
@@ -23,6 +23,14 @@ const ADDABLE = ['shuffle', 'grind', 'drop', 'long', 'evening', 'ankle', 'streng
 
 export function setWeek(n) {
   weekNumber = Math.min(lastWeek(), Math.max(firstWeek(), n));
+}
+
+/** The green recap: logged metrics, then what you used from the fuel plan. */
+function rowSummary(session, entry) {
+  const parts = summaryOf(session, entry);
+  const fuel = fuelSummary(session);
+  if (fuel) parts.push(fuel);
+  return parts;
 }
 
 function sessionRow(session, dateISO) {
@@ -40,7 +48,7 @@ function sessionRow(session, dateISO) {
   if (session.extra) bits.push('Added');
   else if (session.plannedDay) bits.push(`Moved from ${session.plannedDay}`);
 
-  const logged = summaryOf(session, e);
+  const logged = rowSummary(session, e);
 
   return `
 <div class="session${done ? ' done' : ''}${isOpen ? ' open' : ''}" data-session="${esc(session.id)}" data-date="${dateISO}">
@@ -418,7 +426,7 @@ export function onLog(reason) {
     row.classList.toggle('done', !!e.completed);
     const meta = row.querySelector('.session-meta');
     if (!meta) return;
-    const logged = summaryOf(session, e);
+    const logged = rowSummary(session, e);
     let el = meta.querySelector('.logged');
     if (logged.length) {
       if (!el) { el = document.createElement('span'); el.className = 'logged'; meta.appendChild(el); }

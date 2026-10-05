@@ -2,10 +2,44 @@
 
 import { esc, on, toast } from '../dom.js';
 import { store } from '../store.js';
-import { plan, verticalByWeek, totalVertical, totals, currentWeekNumber } from '../model.js';
-import { todayISO, formatShort, hhmm } from '../dates.js';
+import { plan, verticalByWeek, totalVertical, totals, currentWeekNumber, sessionsOf } from '../model.js';
+import { computeActual, FUEL_TYPES } from './fuel.js';
+import { todayISO, formatShort, hhmm, sessionDate } from '../dates.js';
 
 let root = null;
+
+const FACE = { fine: '🙂', uneasy: '😐', nausea: '🤢' };
+
+/** The coach's one-line log after every long run, filled in from the fuel plans. */
+function fuelLog() {
+  const rows = [];
+  for (const w of plan.weeks) {
+    for (const s of sessionsOf(w)) {
+      if (!FUEL_TYPES.has(s.type)) continue;
+      const c = computeActual(s);
+      if (c.logged) rows.push({ date: sessionDate(w, s), c, title: s.title });
+    }
+  }
+  if (!rows.length) return '';
+  const n = v => Math.round(v).toLocaleString();
+  return `
+<div class="card">
+  <div class="card-pad" style="padding-bottom:4px"><div class="eyebrow">Fuel log</div></div>
+  <div class="table-wrap" style="padding:0 14px 12px">
+    <table class="cp-table fuel-log">
+      <thead><tr><th>Date</th><th class="num">Time</th><th class="num">Carbs<br>g/hr</th><th class="num">Fluid<br>ml/hr</th><th class="num">Na<br>mg/hr</th><th class="num">Gut</th></tr></thead>
+      <tbody>${rows.map(r => `<tr title="${esc(r.title)}">
+        <td>${formatShort(r.date)}</td>
+        <td class="num">${hhmm(r.c.minutes)}</td>
+        <td class="num">${n(r.c.rates.carbsG)}</td>
+        <td class="num">${n(r.c.rates.fluidMl)}</td>
+        <td class="num">${n(r.c.rates.sodiumMg)}</td>
+        <td class="num">${FACE[r.c.stomach] || '—'}</td>
+      </tr>`).join('')}</tbody>
+    </table>
+  </div>
+</div>`;
+}
 
 function chart(byWeek) {
   const W = 320, H = 108, padL = 22, padR = 4, padB = 14, padT = 6;
@@ -76,6 +110,8 @@ export function render(container) {
   </div>
   ${chart(byWeek)}
 </div>
+
+${fuelLog()}
 
 <div class="card">
   <div class="rc-stats">

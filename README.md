@@ -117,6 +117,15 @@ documents and product labels — items whose values depend on the brand show `?`
 enter yours with ✎, which then applies everywhere. **Something else** adds an item of
 your own. Plans sync with the rest of your log.
 
+**After the run**, switch the fuel plan to **After the run** (it opens there by itself once
+the session is ticked). Count what came back — leftovers start at 0, meaning everything
+was used, and drinks count in halves — and add anything you **picked up on the way**.
+It shows the rates you actually used against target, using the duration you logged on the
+session, plus what came back and a stomach rating. The collapsed row then carries a
+`Used … g/hr · … ml/hr · … mg/hr` line, the Bank tab keeps a **Fuel log** with one row per
+run, **Copy last: used** starts the next plan from what actually went down, and *Gut Check*
+unlocks itself on the first run at 60 g/hr or more with the stomach marked fine.
+
 ### Export / import
 
 Settings → **Export JSON** downloads `trail-log-YYYY-MM-DD.json`. **Import JSON** takes it

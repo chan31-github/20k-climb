@@ -628,3 +628,11 @@ h1, h2, h3, h4 { margin: 0; font-weight: 650; line-height: 1.25; letter-spacing:
   padding: 10px; margin: 8px 0; background: var(--bg-raised); border: 1px dashed var(--line-strong); border-radius: var(--radius-sm);
 }
 .fuel-item-form .full { grid-column: 1 / -1; }
+
+.fuel-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.fuel-top .adjust-label { margin: 0; }
+.seg.seg-sm { padding: 3px; }
+.seg.seg-sm button { min-height: 32px; font-size: 13px; padding: 0 10px; white-space: nowrap; flex: 0 0 auto; }
+.fuel-hint { font-size: 13px; color: var(--text-dim); margin: 0 0 8px; }
+.fr-have small { font-size: 12px; font-weight: 500; color: var(--text-dim); }
+.fuel-log td, .fuel-log th { white-space: nowrap; }

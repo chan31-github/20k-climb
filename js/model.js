@@ -2,6 +2,7 @@
 
 import { store } from './store.js';
 import { todayISO, sessionDate, DAYS } from './dates.js';
+import { computeActual, FUEL_TYPES } from './views/fuel.js';
 
 export const TYPE_ICON = {
   grind: '🪜', shuffle: '🐌', drop: '⛰️', long: '🥾',
@@ -150,6 +151,13 @@ export function evaluateAchievements(log = store.state) {
     return e && e.completed && s && s.type === 'drop' ? Math.max(best, num(e.descentM)) : best;
   }, 0);
 
+  // Gut Check: carbs actually used at or above the rate, stomach marked fine.
+  const gutCheck = min => plan.weeks.some(w => sessionsOf(w, log).some(s => {
+    if (!FUEL_TYPES.has(s.type)) return false;
+    const c = computeActual(s);
+    return c.logged && c.stomach === 'fine' && c.rates.carbsG >= min;
+  }));
+
   const perfect = plan.weeks.map(w => weekStats(w, log)).map(s => s.total > 0 && s.done === s.total);
   let streak = 0, bestStreak = 0;
   for (const ok of perfect) { streak = ok ? streak + 1 : 0; bestStreak = Math.max(bestStreak, streak); }
@@ -163,6 +171,7 @@ export function evaluateAchievements(log = store.state) {
     else if (t.type === 'session') hit = !!(log.entries[t.value] && log.entries[t.value].completed);
     else if (t.type === 'perfectWeekStreak') hit = bestStreak >= t.value;
     else if (t.type === 'dropDescent') hit = deepestDrop >= t.value;
+    else if (t.type === 'gutCheck') hit = gutCheck(t.value);
     if (hit) store.setAchievement(a.id, today);
   }
 }

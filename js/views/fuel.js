@@ -31,7 +31,14 @@ const DEFAULT_TARGETS = { carbs: [65, 65], fluid: [750, 800], sodium: [700, 1000
 export const FUEL_TYPES = new Set(['long', 'race']);
 
 const editing = new Set();       // session ids with the targets editor open
-let itemForm = null;             // { sessionId, itemId|null } — the item editor that's open
+let itemForm = null;             // { sessionId, itemId|null, target: 'pack'|'picked' } — the item editor that's open
+const modes = new Map();         // sessionId -> 'packed' | 'after', once you've picked one
+
+const STOMACH = [['fine', '🙂', 'Fine'], ['uneasy', '😐', 'Uneasy'], ['nausea', '🤢', 'Nausea']];
+
+/** Drinks can come back half-finished; everything else counts whole. */
+const stepFor = it => (it && it.fluidMl > 0 ? 0.5 : 1);
+const qtyText = q => (q % 1 ? `${Math.floor(q) || ''}½` : String(q));
 
 /** Library and your own items, with your values laid over the library's. */
 export function allItems() {
@@ -78,6 +85,55 @@ export function compute(session) {
   // The coach's rule: first feed at 30 minutes, then every 20.
   const feeds = t.durationMin >= 30 ? Math.floor((t.durationMin - 30) / 20) + 1 : 0;
   return { t, hours, tot, need, missing, feeds };
+}
+
+/**
+ * What you actually used: packed minus what came back, plus anything picked up
+ * on the way. Rates use the run time you logged on the session, falling back to
+ * the planned duration.
+ */
+export function computeActual(session) {
+  const plan = store.fuelPlan(session.id) || { items: {} };
+  const a = plan.actual || {};
+  const t = targetsFor(session);
+  const loggedMin = Number((store.entry(session.id) || {}).durationMin) || 0;
+  const minutes = loggedMin || t.durationMin;
+  const hours = minutes / 60;
+  const used = {}, left = {};
+  for (const [id, packed] of Object.entries(plan.items || {})) {
+    const back = Math.min(packed, (a.left || {})[id] || 0);
+    if (packed - back > 0) used[id] = packed - back;
+    if (back > 0) left[id] = back;
+  }
+  for (const [id, q] of Object.entries(a.picked || {})) if (q > 0) used[id] = (used[id] || 0) + q;
+
+  const sum = map => {
+    const tot = { carbsG: 0, sodiumMg: 0, fluidMl: 0 }, missing = [];
+    for (const [id, q] of Object.entries(map)) {
+      const it = itemById(id);
+      if (!it) continue;
+      for (const k of Object.keys(tot)) {
+        if (it[k] == null) { if (k === 'sodiumMg') missing.push(it.name); } else tot[k] += it[k] * q;
+      }
+    }
+    return { tot, missing };
+  };
+  const u = sum(used), l = sum(left);
+  const rate = k => (hours ? u.tot[k] / hours : 0);
+  return {
+    logged: !!a.logged, stomach: a.stomach || null, minutes, fromLog: !!loggedMin, t,
+    used, left, tot: u.tot, leftTot: l.tot, missing: [...new Set(u.missing)],
+    rates: { carbsG: rate('carbsG'), fluidMl: rate('fluidMl'), sodiumMg: rate('sodiumMg') }
+  };
+}
+
+/** One line for the collapsed row, once leftovers are logged. */
+export function fuelSummary(session) {
+  if (!FUEL_TYPES.has(session.type)) return '';
+  const c = computeActual(session);
+  if (!c.logged) return '';
+  const face = (STOMACH.find(([k]) => k === c.stomach) || [])[1] || '';
+  return `Used ${n0(c.rates.carbsG)} g/hr · ${n0(c.rates.fluidMl)} ml/hr · ${n0(c.rates.sodiumMg)} mg/hr${face ? ' · ' + face : ''}`;
 }
 
 function verdict(have, [lo, hi]) {
@@ -188,7 +244,7 @@ function packHtml(session) {
   const items = Object.entries(plan.items || {}).filter(([, q]) => q > 0);
   const packedIds = new Set(items.map(([id]) => id));
   const available = allItems().filter(it => !packedIds.has(it.id));
-  const formHere = itemForm && itemForm.sessionId === session.id;
+  const formHere = itemForm && itemForm.sessionId === session.id && itemForm.target !== 'picked';
 
   return `
   <ul class="pack">
@@ -212,27 +268,128 @@ function packHtml(session) {
       ${available.map(it => `<option value="${esc(it.id)}">${esc(it.name)}</option>`).join('')}
       <option value="__custom">＋ Something else (enter from its label)</option>
     </select>
-    ${otherPlanId(session.id) && !items.length
-      ? '<button type="button" class="btn small" data-act="fuel-copy">Copy last plan</button>' : ''}
   </div>
+  ${otherPlanId(session.id) && !items.length ? `<div class="btn-row" style="margin-top:8px">
+    <button type="button" class="btn small" data-act="fuel-copy" data-what="packed">Copy last: packed</button>
+    ${otherPlanId(session.id, true) ? '<button type="button" class="btn small" data-act="fuel-copy" data-what="used">Copy last: used</button>' : ''}
+  </div>` : ''}
   ${formHere && itemForm.itemId === null ? itemFormHtml(session.id, null) : ''}`;
 }
 
-/** The most recently edited fuel plan on another session, if any has items. */
-function otherPlanId(sessionId) {
+/** The most recently edited fuel plan on another session — optionally one with leftovers logged. */
+function otherPlanId(sessionId, needActual = false) {
   const plans = Object.entries(store.state.fuel || {})
     .filter(([id, p]) => id !== sessionId && p && Object.values(p.items || {}).some(q => q > 0))
+    .filter(([, p]) => !needActual || (p.actual && p.actual.logged))
     .sort((a, b) => (b[1].updatedAt || '').localeCompare(a[1].updatedAt || ''));
   return plans.length ? plans[0][0] : null;
 }
 
+function actualResultsHtml(session) {
+  const c = computeActual(session);
+  const L = v => (v / 1000).toFixed(2).replace(/\.?0+$/, '');
+  const rows = [
+    ['Carbs',  `${n0(c.tot.carbsG)} g`,     c.rates.carbsG,   c.t.carbs,  'g/hr'],
+    ['Fluid',  `${L(c.tot.fluidMl)} L`,     c.rates.fluidMl,  c.t.fluid,  'ml/hr'],
+    ['Sodium', `${n0(c.tot.sodiumMg)} mg`,  c.rates.sodiumMg, c.t.sodium, 'mg/hr']
+  ].map(([label, total, rate, target, unit]) => {
+    const v = verdict(rate, target);
+    return `<div class="fuel-row ${v}">
+      <span class="fr-label">${label}</span>
+      <span class="fr-have">${n0(rate)} <small>${unit}</small></span>
+      <span class="fr-rate">${total}</span>
+      <span class="fr-ico" aria-label="${v}">${ICON[v]}</span>
+      <span class="fr-need">target ${range(target)} ${unit}</span>
+    </div>`;
+  }).join('');
+  const leftNames = Object.entries(c.left).map(([id, q]) => `${qtyText(q)} ${(itemById(id) || {}).name || id}`);
+  const lt = c.leftTot;
+  return `${rows}
+    <div class="fuel-foot">${leftNames.length
+      ? `Came back: ${esc(leftNames.join(', '))} ≈ ${n0(lt.carbsG)} g carbs${lt.fluidMl ? `, ${L(lt.fluidMl)} L` : ''}`
+      : 'Nothing came back — everything was used.'}</div>
+    ${c.missing.length ? `<div class="fuel-warn">No sodium value for ${esc(c.missing.join(', '))} — sodium is understated.</div>` : ''}`;
+}
+
+function afterHtml(session) {
+  const plan = store.fuelPlan(session.id) || { items: {} };
+  const a = plan.actual || {};
+  const c = computeActual(session);
+  const packed = Object.entries(plan.items || {}).filter(([, q]) => q > 0);
+  const picked = Object.entries(a.picked || {}).filter(([, q]) => q > 0);
+  const formHere = itemForm && itemForm.sessionId === session.id && itemForm.target === 'picked';
+
+  const counter = (act, id, q) => `
+    <button type="button" class="pk-btn" data-act="${act}" data-dir="-1" aria-label="Less">−</button>
+    <span class="pk-qty">${qtyText(q)}</span>
+    <button type="button" class="pk-btn" data-act="${act}" data-dir="1" aria-label="More">+</button>`;
+
+  return `
+  <div class="fuel-targets"><span>Run time ${hhmm(c.minutes)} ${c.fromLog ? '(from your log)' : '(planned — log your duration above for exact rates)'}</span></div>
+  ${!c.logged ? '<p class="fuel-hint">Count what came back. Leftovers start at 0 — everything used.</p>' : ''}
+  ${packed.length ? `<div class="adjust-label" style="margin-top:4px">Left over</div>
+  <ul class="pack">
+    ${packed.map(([id, q]) => {
+      const it = itemById(id); if (!it) return '';
+      const back = Math.min(q, (a.left || {})[id] || 0);
+      return `<li data-item="${esc(id)}">
+        <span class="pk-text"><span class="pk-name">${esc(it.name)}</span>
+          <span class="pk-unit">packed ${qtyText(q)} · used ${qtyText(q - back)}</span></span>
+        ${counter('fuel-left', id, back)}
+      </li>`;
+    }).join('')}
+  </ul>` : '<p class="small muted" style="margin:0 0 8px">Nothing was packed for this run — add what you picked up below.</p>'}
+  ${picked.length ? `<div class="adjust-label">Picked up on the way</div>
+  <ul class="pack">
+    ${picked.map(([id, q]) => {
+      const it = itemById(id); if (!it) return '';
+      return `<li data-item="${esc(id)}">
+        <span class="pk-text"><span class="pk-name">${esc(it.name)}</span><span class="pk-unit">${esc(perUnit(it))}</span></span>
+        ${counter('fuel-picked', id, q)}
+      </li>`;
+    }).join('')}
+  </ul>` : ''}
+  <div class="fuel-add">
+    <select data-act="fuel-pick" aria-label="Add something picked up on the way">
+      <option value="">+ Something you picked up on the way…</option>
+      ${allItems().map(it => `<option value="${esc(it.id)}">${esc(it.name)}</option>`).join('')}
+      <option value="__custom">＋ Something else (enter from its label)</option>
+    </select>
+  </div>
+  ${formHere ? itemFormHtml(session.id, null) : ''}
+  <div class="adjust-label" style="margin-top:12px">Used</div>
+  <div class="fuel-results">${actualResultsHtml(session)}</div>
+  <div class="adjust-label">Stomach</div>
+  <div class="chip-row" role="group" aria-label="Stomach">
+    ${STOMACH.map(([k, face, label]) => `<button type="button" class="chip" data-act="fuel-stomach" data-v="${k}"
+      aria-pressed="${c.stomach === k}">${face} ${label}</button>`).join('')}
+  </div>
+  ${!c.logged && packed.length ? '<button type="button" class="btn small block" data-act="fuel-all-used" style="margin-top:10px">Everything was used</button>' : ''}`;
+}
+
+/** Packed while the run is ahead; after the run once it's ticked or leftovers are logged. */
+function modeFor(session) {
+  if (modes.has(session.id)) return modes.get(session.id);
+  const a = (store.fuelPlan(session.id) || {}).actual;
+  const done = (store.entry(session.id) || {}).completed;
+  return (a && a.logged) || done ? 'after' : 'packed';
+}
+
 export function fuelSection(session) {
   if (!FUEL_TYPES.has(session.type)) return '';
+  const after = modeFor(session) === 'after';
   return `<div class="fuel" data-fuel="${esc(session.id)}">
-    <div class="adjust-label">Fuel plan</div>
+    <div class="fuel-top">
+      <div class="adjust-label">Fuel plan</div>
+      <div class="seg seg-sm" role="group" aria-label="Fuel view">
+        <button type="button" data-act="fuel-mode" data-mode="packed" aria-pressed="${!after}">Packed</button>
+        <button type="button" data-act="fuel-mode" data-mode="after" aria-pressed="${after}">After the run</button>
+      </div>
+    </div>
+    ${after ? afterHtml(session) : `
     ${targetsHtml(session)}
     <div class="fuel-results">${resultsHtml(session)}</div>
-    ${packHtml(session)}
+    ${packHtml(session)}`}
   </div>`;
 }
 
@@ -269,7 +426,7 @@ export function wireFuel(container, sessionFor) {
     if (!sel || !sel.value) return;
     const s = sessionOf(sel);
     if (sel.value === '__custom') {
-      itemForm = { sessionId: s.id, itemId: null };
+      itemForm = { sessionId: s.id, itemId: null, target: 'pack' };
     } else {
       const next = items(s.id);
       next[sel.value] = (next[sel.value] || 0) + 1;
@@ -280,12 +437,65 @@ export function wireFuel(container, sessionFor) {
 
   on(container, 'click', '[data-act="fuel-copy"]', (ev, b) => {
     const s = sessionOf(b);
-    const from = otherPlanId(s.id);
+    const used = b.dataset.what === 'used';
+    const from = otherPlanId(s.id, used);
     if (!from) return;
-    store.setFuelPlan(s.id, { items: Object.assign({}, store.fuelPlan(from).items) });
+    let next = Object.assign({}, store.fuelPlan(from).items);
+    if (used) {
+      // What actually went down last time, rounded up to whole items to pack.
+      const c = computeActual(sessionFor(from) || { id: from, type: 'long' });
+      next = Object.fromEntries(Object.entries(c.used).map(([id, q]) => [id, Math.ceil(q)]));
+    }
+    store.setFuelPlan(s.id, { items: next });
     redraw(b);
-    toast('Copied — adjust the counts for this run');
+    toast(used ? 'Copied what you used last time' : 'Copied — adjust the counts for this run');
   });
+
+  // --- After the run -------------------------------------------------------
+  const actual = id => Object.assign({ left: {}, picked: {} }, (store.fuelPlan(id) || {}).actual || {});
+  const saveActual = (el, patch) => {
+    const s = sessionOf(el);
+    store.setFuelPlan(s.id, { actual: Object.assign(actual(s.id), patch, { logged: true }) });
+    redraw(el);
+  };
+
+  on(container, 'click', '[data-act="fuel-mode"]', (ev, b) => { modes.set(sessionOf(b).id, b.dataset.mode); redraw(b); });
+
+  on(container, 'click', '[data-act="fuel-left"]', (ev, b) => {
+    const s = sessionOf(b);
+    const id = b.closest('li').dataset.item;
+    const packed = items(s.id)[id] || 0;
+    const left = Object.assign({}, actual(s.id).left);
+    left[id] = Math.min(packed, Math.max(0, (left[id] || 0) + Number(b.dataset.dir) * stepFor(itemById(id))));
+    if (!left[id]) delete left[id];
+    saveActual(b, { left });
+  });
+
+  on(container, 'click', '[data-act="fuel-picked"]', (ev, b) => {
+    const s = sessionOf(b);
+    const id = b.closest('li').dataset.item;
+    const picked = Object.assign({}, actual(s.id).picked);
+    picked[id] = Math.max(0, (picked[id] || 0) + Number(b.dataset.dir) * stepFor(itemById(id)));
+    if (!picked[id]) delete picked[id];
+    saveActual(b, { picked });
+  });
+
+  container.addEventListener('change', ev => {
+    const sel = ev.target.closest('[data-act="fuel-pick"]');
+    if (!sel || !sel.value) return;
+    const s = sessionOf(sel);
+    if (sel.value === '__custom') { itemForm = { sessionId: s.id, itemId: null, target: 'picked' }; redraw(sel); return; }
+    const picked = Object.assign({}, actual(s.id).picked);
+    picked[sel.value] = (picked[sel.value] || 0) + 1;
+    saveActual(sel, { picked });
+  });
+
+  on(container, 'click', '[data-act="fuel-stomach"]', (ev, b) => {
+    const s = sessionOf(b);
+    saveActual(b, { stomach: actual(s.id).stomach === b.dataset.v ? null : b.dataset.v });
+  });
+
+  on(container, 'click', '[data-act="fuel-all-used"]', (ev, b) => saveActual(b, {}));
 
   // Targets
   on(container, 'click', '[data-act="fuel-edit-targets"]', (ev, b) => { editing.add(sessionOf(b).id); redraw(b); });
@@ -323,7 +533,7 @@ export function wireFuel(container, sessionFor) {
   on(container, 'click', '[data-act="fuel-item-edit"]', (ev, b) => {
     const s = sessionOf(b);
     const id = b.closest('li').dataset.item;
-    itemForm = itemForm && itemForm.sessionId === s.id && itemForm.itemId === id ? null : { sessionId: s.id, itemId: id };
+    itemForm = itemForm && itemForm.sessionId === s.id && itemForm.itemId === id ? null : { sessionId: s.id, itemId: id, target: 'pack' };
     redraw(b);
   });
   on(container, 'click', '[data-act="fuel-item-cancel"]', (ev, b) => { itemForm = null; redraw(b); });
@@ -336,7 +546,11 @@ export function wireFuel(container, sessionFor) {
     if (!name) { toast('Give it a name'); return; }
     const id = form.dataset.item || `c-${Date.now().toString(36)}`;
     store.setFuelItem(id, { name, carbsG: num('carbsG') ?? 0, sodiumMg: num('sodiumMg'), fluidMl: num('fluidMl') ?? 0, weightG: num('weightG') });
-    if (!form.dataset.item) {
+    if (!form.dataset.item && itemForm && itemForm.target === 'picked') {
+      const a = Object.assign({ left: {}, picked: {} }, (store.fuelPlan(s.id) || {}).actual || {});
+      a.picked = Object.assign({}, a.picked, { [id]: (a.picked[id] || 0) + 1 });
+      store.setFuelPlan(s.id, { actual: Object.assign(a, { logged: true }) });
+    } else if (!form.dataset.item) {
       const next = items(s.id);
       next[id] = (next[id] || 0) + 1;
       store.setFuelPlan(s.id, { items: next });
