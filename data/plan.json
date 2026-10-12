@@ -43,7 +43,7 @@
       "role": "Dress rehearsal",
       "targetFinish": "15:10",
       "sessionId": "w10-sat-race",
-      "notesMd": "You have **11 hours** for 30km and 1,540m. You should finish in around **6h30–7h**. There is no cutoff pressure whatsoever, which is exactly why it's the perfect laboratory.\n\n**This is not a race. Repeat it until you believe it.** The purpose is to rehearse TL50 under real conditions three weeks out, and to find out what breaks while it still costs you nothing.\n\nRehearse everything:\n- The exact kit you'll wear at TL50\n- Hands-free fuelling — the reason you're not using poles. Prove it works\n- The full fuelling plan on the timer — this is your last big gut test\n- Race-morning breakfast at the same time you'll eat it on 14 November\n- Chat Pace throughout. If you can't hold a conversation, you're going too hard.\n\n**Afterwards, write down three things:** what hurt, what your stomach did, and what you'd change. That list becomes your TL50 fix-list.",
+      "notesMd": "You have **11 hours** for 30km and 1,540m. You should finish in around **6h30–7h**. There is no cutoff pressure whatsoever, which is exactly why it's the perfect laboratory.\n\n**This is not a race. Repeat it until you believe it.** The purpose is to rehearse TL50 under real conditions three weeks out, and to find out what breaks while it still costs you nothing.\n\nRehearse everything:\n- The exact kit you'll wear at TL50\n- Hands-free fuelling — the reason you're not using poles. Prove it works\n- The full fuelling plan on the timer — this is your last big gut test\n- Race-morning breakfast at the same time you'll eat it on 14 November\n- Chat Pace throughout. If you can't hold a conversation, you're going too hard.\n\n**Fuel and fluid by segment** *(65 g/hr, 750 ml/hr)*\n\n| Segment | Time | Carbs | Fluid |\n|---|---|---|---|\n| Start → CP1 Parkview | 1h25 | ~90g | ~1.1L |\n| CP1 → CP2 Yau Tong | **2h05** | **~135g** | **~1.6L** |\n| CP2 → CP3 Tseng Lan Shue | 1h10 | ~75g | ~0.9L |\n| CP3 → Finish | 2h00 | ~130g | ~1.5L |\n\nCarry **at least 1.6L capacity** out of Parkview. Refill at every checkpoint. The opening stage over the Twins and Violet Hill is steep stone steps — hike up, walk the steep descents.\n\n**Afterwards, write down three things:** what hurt, what your stomach did, and what you'd change. That list becomes your TL50 fix-list.",
       "checkpoints": [
         {
           "name": "Start, Tai Tam",
@@ -937,17 +937,17 @@
       "startDate": "2026-10-12",
       "endDate": "2026-10-18",
       "phaseId": "p3",
-      "note": "🔥 **PEAK WEEK.**\n\n⚠️ Roughly 7 hours, the biggest of the plan. **Cut the weekday sessions to two short ones. Nothing takes priority over Sunday.** No rowing this week.\n\n⚠️ Sunday puts the recce **six days before RCWT** rather than seven. If there is one Saturday all plan worth winning from the family, make it **17 October** — this session deserves the extra recovery day. If not, run RCWT slightly tired and treat it as a more honest test of fuelling under fatigue.\n\nKit steps up to **Level 3: full TL50 mandatory kit at race weight, every long session from here.** And from this week, do the **last ten minutes of every long run deliberately on technical ground** — rolling an ankle when tired is a trainable skill.\n\n*Vertical banked: ~10,500m — halfway, and ten Lantau Peaks deep* 🏔️🏔️",
+      "note": "🔧 **SYSTEMS CHECK** *(revised 11 Oct)* — the final rehearsal of every race system before RCWT.\n\n**Why 3h30, not 5h30:** the Week 8 recovery week became a 3h37 session; RCWT six days later is itself a 6½–7h effort at race intensity and is now the peak session; and the \"past five hours\" goal was already achieved on 30 Aug and 4 Oct.\n\nKit steps up to **Level 3: full TL50 mandatory kit at race weight, every long session from here.** From this week, do the **last ten minutes of every long run deliberately on technical ground** — rolling an ankle when tired is a trainable skill. No rowing this week.\n\n*Vertical banked: ~10,500m — halfway, and ten Lantau Peaks deep* 🏔️🏔️",
       "isRecovery": false,
-      "isPeak": true,
+      "isPeak": false,
       "sessions": [
         {
           "id": "w9-mon-ankle",
           "day": "Mon",
-          "type": "evening",
-          "title": "Ankle Church + Strength",
-          "targetMinutes": 30,
-          "detail": "From Week 6 the ankle work adds single-leg hop and stick: 3 × 8 each leg. The ankle protocol then the leg-biased strength block — eccentric step-downs, split squats, single-leg calf raises first, upper body at maintenance. Paired so it's two things to remember rather than four. If time is short, do the ankle work and drop the rest — never the other way round.",
+          "type": "ankle",
+          "title": "Ankle Church — ankle work only",
+          "targetMinutes": 10,
+          "detail": "No running today. Ankle work only — the strength block is dropped this week to keep the legs fresh for Sunday and RCWT.",
           "critical": true
         },
         {
@@ -963,9 +963,19 @@
           "id": "w9-wed-grind",
           "day": "Wed",
           "type": "grind",
-          "title": "Grind: 12 × 90s",
-          "targetMinutes": 50,
-          "detail": "One of the two short weekday sessions. Cut it back if the week is too much — never the Sunday.",
+          "title": "Grind: 8 × 90s",
+          "targetMinutes": 45,
+          "detail": "Cut back from 12 reps. Stairs or hill repeats, effort not pace.",
+          "critical": false
+        },
+        {
+          "id": "w9-thu-drop",
+          "day": "Thu",
+          "type": "drop",
+          "title": "Drop, ~300m descent",
+          "targetMinutes": 40,
+          "targetDescent": "~300",
+          "detail": "A short one this week. The climb is transport — hike it easy. Only the descending is the stimulus, so log descent metres.",
           "critical": false
         },
         {
@@ -978,32 +988,38 @@
           "critical": true
         },
         {
-          "id": "w9-sat-yoga",
+          "id": "w9-fri-rest",
+          "day": "Fri",
+          "type": "rest",
+          "title": "Rest. Kit check.",
+          "detail": "Check both mandatory kit lists — RCWT and TL50 — and buy anything missing.",
+          "critical": false
+        },
+        {
+          "id": "w9-sat-rest",
           "day": "Sat",
-          "type": "yoga",
-          "title": "Free — yoga if the day allows",
-          "targetMinutes": 25,
-          "detail": "Free by design — family chaos costs you nothing here, and Friday plus Saturday leave you fresh for Sunday. Twenty to thirty gentle minutes of yoga if the day allows: balance postures are proprioception training. Otherwise nothing.",
-          "critical": false,
-          "optional": true
+          "type": "rest",
+          "title": "Rest.",
+          "detail": "Lay out the full race-weight kit and Sunday's race breakfast.",
+          "critical": false
         },
         {
           "id": "w9-sun-long",
           "day": "Sun",
           "type": "long",
-          "title": "The Long One: 5h30 — RECCE #2, the key session",
-          "targetMinutes": 330,
-          "targetGainM": 1430,
-          "detail": "Go past the point where you have twice failed. The actual first half of TL50: Mui Wo → Ham Tin → Chi Ma Wan → back to Mui Wo, 26.3km and 1,427m. Start at 09:00 — the real race start time. Leave home around 07:00; no overnight needed. This puts you on Chi Ma Wan in the midday heat, which is exactly where both attempts failed. Full TL50 mandatory kit at race weight, 65–75g/hr on the timer, exact race breakfast. Target 6.3 km/h fe — no faster. Finish at Mui Wo, then stand there and register that on race day you'd still have 18km and 1,081m to go. Success: 5h30 done, eating normally at the end, no nausea.",
+          "title": "The Long One: 3h30 — Systems Check",
+          "targetMinutes": 210,
+          "targetGainM": 900,
+          "detail": "Final rehearsal of every race system before RCWT. Mui Wo at 09:00. Out via Ham Tin into the Chi Ma Wan block, turn at 1h45, return — reaching the climbing in the late-morning heat. Full TL50 mandatory kit at race weight — first time carrying all of it. Exact race breakfast, at race timing. 65 g/hr carbs and 250 ml per 20-minute beep (750 ml/hr) — the first session at true race intake. Race effort: ~6.3 km/h fe; hike the climbs. Eat the moment you feel hungry — never save it. Cut from 5h30 because the recovery week was skipped and RCWT, six days later, is now the peak session. Success: 65 g/hr and 750 ml/hr hit, stomach happy, kit carried without problems.",
           "critical": true,
           "fuel": {
             "carbs": [
               65,
-              75
+              65
             ],
             "fluid": [
               750,
-              800
+              750
             ],
             "sodium": [
               700,
@@ -1072,7 +1088,7 @@
           "title": "🥉 RCWT Explorer 30k — 08:30",
           "targetMinutes": 400,
           "targetGainM": 1540,
-          "detail": "30km / 1,540m+, 11h limit. Target finish 15:10 (6h40), which is 4.1 km/h fe. This is not a race — it's a laboratory. Chat Pace throughout, 65g/hr on the timer from 30 minutes in, hands-free fuelling from start to finish. Afterwards write down three things: what hurt, what your stomach did, what you'd change.",
+          "detail": "30km / 1,540m+, 11h limit. Target finish 15:10 (6h40), which is 4.1 km/h fe. This is not a race — it's a laboratory. Chat Pace throughout, 65 g/hr and 750 ml/hr on the timer from 30 minutes in, hands-free fuelling from start to finish. Carry at least 1.6L out of Parkview — CP1 to CP2 is the long one, 2h05 — and refill at every checkpoint. Afterwards write down three things: what hurt, what your stomach did, what you'd change.",
           "critical": true,
           "fuel": {
             "carbs": [
@@ -1081,7 +1097,7 @@
             ],
             "fluid": [
               750,
-              800
+              750
             ],
             "sodium": [
               700,
@@ -1726,11 +1742,11 @@
     {
       "id": "five-thirty",
       "label": "Five Thirty",
-      "hint": "The peak long run, past where the race twice ended (Week 9)",
+      "hint": "A long run or race past 5h30 — past where the race twice ended",
       "auto": true,
       "trigger": {
-        "type": "session",
-        "value": "w9-sun-long"
+        "type": "longRunMinutes",
+        "value": 330
       }
     },
     {
